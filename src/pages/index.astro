@@ -1,32 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Hero from '../components/sections/Hero.astro';
 ---
 
 <Layout>
-  <main class="min-h-screen flex items-center justify-center bg-[var(--bg-alt)]">
-    <div class="max-w-xl mx-auto p-8 bg-[var(--bg-card)] rounded-lg border border-[var(--border-default)] shadow-sm">
-      <h1 class="text-2xl font-bold text-[var(--text-heading)] mb-4">
-        ✅ Tailwind v4 + Tokens funcionando
-      </h1>
-      <p class="text-[var(--text-secondary)] mb-4">
-        Esta página verifica que los tokens del diseño se aplican correctamente.
-      </p>
-      <div class="flex gap-3 flex-wrap">
-        <span class="px-3 py-1 rounded-full bg-[var(--bg-indigo-pill)] text-[var(--color-accent)] text-sm font-medium">
-          Accent pill
-        </span>
-        <span class="px-3 py-1 rounded-full bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-sm font-medium">
-          Amber pill
-        </span>
-        <span class="px-3 py-1 rounded-full bg-[var(--bg-green)] text-[var(--text-green)] text-sm font-medium">
-          Green pill
-        </span>
-      </div>
-      <div class="mt-6 p-4 bg-[var(--bg-indigo-soft)] rounded border border-[var(--border-accent)]">
-        <p class="text-[var(--color-primary)] font-medium">
-          Token de color primario: --color-primary (#4338ca)
-        </p>
-      </div>
-    </div>
+  <Header />
+  <main>
+    <Hero />
   </main>
 </Layout>

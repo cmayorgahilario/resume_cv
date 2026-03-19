@@ -1,0 +1,95 @@
+---
+// Hero section — two-column layout: text left, photo + stats right
+---
+
+<section id="inicio" class="bg-[var(--bg-primary)] py-20 px-20">
+  <div class="max-w-[1440px] mx-auto flex gap-[60px] justify-center items-center">
+
+    <!-- Left column: text content -->
+    <div class="flex flex-col gap-6 flex-1 max-w-[600px]">
+
+      <!-- Availability badge -->
+      <div class="inline-flex items-center gap-2 border-[1.5px] border-[var(--color-primary)] rounded-full px-4 py-1.5 w-fit">
+        <div class="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></div>
+        <span class="text-[13px] font-medium text-[var(--color-primary)]">
+          Disponible para nuevos proyectos
+        </span>
+      </div>
+
+      <!-- Name heading -->
+      <h1 class="text-[48px] font-bold leading-[1.1] text-[var(--text-heading)]">
+        Carlos Alberto<br />Mayorga Hilario
+      </h1>
+
+      <!-- Professional title -->
+      <p class="text-[22px] font-medium text-[var(--color-primary)]">
+        Tech Lead | Software Engineer
+      </p>
+
+      <!-- Tagline -->
+      <p class="text-base font-normal leading-[1.6] text-[var(--text-secondary)]">
+        Más de 10 años de experiencia liderando equipos de desarrollo, construyendo
+        arquitecturas escalables y entregando software de alta calidad.
+      </p>
+
+      <!-- CTA row -->
+      <div class="flex gap-4">
+        <a
+          href="#contacto"
+          class="bg-[var(--color-primary)] text-[var(--text-on-primary)] rounded-md px-8 py-3.5 text-base font-semibold hover:opacity-90 transition-opacity"
+        >
+          Contactar
+        </a>
+        <a
+          href="#proyectos"
+          class="border-[1.5px] border-[var(--border-default)] text-[var(--text-heading)] rounded-md px-8 py-3.5 text-base font-semibold hover:border-[var(--color-primary)] transition-colors bg-[var(--bg-primary)]"
+        >
+          Ver Proyectos
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right column: photo + stats -->
+    <div class="flex flex-col gap-8 items-center flex-shrink-0">
+
+      <!-- Profile photo -->
+      <div class="bg-[var(--bg-hero-photo)] rounded-lg">
+        <img
+          src="/profile.webp"
+          alt="Carlos Mayorga"
+          class="w-[320px] h-[380px] object-cover rounded-lg"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Stats row -->
+      <div class="flex gap-6">
+
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[36px] font-bold text-[var(--color-primary)]">10+</span>
+          <span class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-[1px]">AÑOS EXP.</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[36px] font-bold text-[var(--color-primary)]">80%</span>
+          <span class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-[1px]">BUGS RED.</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[36px] font-bold text-[var(--color-primary)]">92%</span>
+          <span class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-[1px]">TEST COV.</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[36px] font-bold text-[var(--color-primary)]">40%</span>
+          <span class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-[1px]">VEL. UP</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
