@@ -1,0 +1,141 @@
+---
+// Header.astro — Sticky navigation header
+// Tokens consumed: --bg-primary, --border-default, --color-primary, --text-heading,
+//                  --text-secondary, --text-on-primary, --bg-alt
+---
+
+<header class="sticky top-0 z-50 w-full bg-[var(--bg-primary)] border-b border-[var(--border-default)]">
+  <div class="max-w-[1440px] mx-auto px-20 py-5 flex items-center justify-between">
+
+    <!-- Logo group -->
+    <div class="flex items-center gap-2">
+      <div
+        class="w-9 h-9 bg-[var(--color-primary)] rounded flex items-center justify-center shrink-0"
+        aria-hidden="true"
+      >
+        <span class="text-[var(--text-on-primary)] text-base font-bold leading-none">CM</span>
+      </div>
+      <span class="text-[var(--text-heading)] text-base font-semibold">Carlos Mayorga</span>
+    </div>
+
+    <!-- Primary navigation -->
+    <nav aria-label="Navegación principal">
+      <ul class="flex items-center gap-8 list-none m-0 p-0">
+        <li>
+          <a
+            href="#inicio"
+            class="text-sm font-medium text-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+            aria-current="page"
+          >Inicio</a>
+        </li>
+        <li>
+          <a
+            href="#sobre-mi"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Sobre Mí</a>
+        </li>
+        <li>
+          <a
+            href="#experiencia"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Experiencia</a>
+        </li>
+        <li>
+          <a
+            href="#habilidades"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Habilidades</a>
+        </li>
+        <li>
+          <a
+            href="#proyectos"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Proyectos</a>
+        </li>
+        <li>
+          <a
+            href="#educacion"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Educación</a>
+        </li>
+        <li>
+          <a
+            href="#contacto"
+            class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+          >Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Right group: theme toggle + CTA -->
+    <div class="flex items-center gap-4">
+
+      <!-- Visual-only theme toggle pill (no JS — M002 adds interactivity) -->
+      <div
+        class="bg-[var(--bg-alt)] rounded-full p-[3px] flex gap-[2px]"
+        aria-label="Cambiar tema (próximamente)"
+        role="img"
+      >
+        <!-- Sun button (active / light mode indicator) -->
+        <div
+          class="w-[26px] h-[26px] rounded-full bg-[var(--color-primary)] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <!-- Sun SVG: circle + 8 rays -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 text-[var(--text-on-primary)]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+
+        <!-- Moon button (dark mode indicator) -->
+        <div
+          class="w-[26px] h-[26px] rounded-full flex items-center justify-center text-[var(--text-secondary)]"
+          aria-hidden="true"
+        >
+          <!-- Moon SVG: crescent -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- CTA: Download CV -->
+      <a
+        href="#"
+        class="bg-[var(--color-primary)] text-[var(--text-on-primary)] rounded-md px-6 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity"
+        aria-label="Descargar CV de Carlos Mayorga"
+      >
+        Descargar CV
+      </a>
+
+    </div>
+  </div>
+</header>
