@@ -4,17 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R050 — Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
-- Class: quality-attribute
-- Status: active
-- Description: Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
-- Why it matters: Dark reference screenshots are needed for visual comparison — without them there's no source of truth for dark mode QA.
-- Source: user
-- Primary owning slice: M010-jgngfg/S01
-- Supporting slices: none
-- Validation: 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18, all non-empty, named 001–009 in both desktop/ and mobile/ subdirectories.
-- Notes: Use MCP export_nodes to generate PNGs from .pen dark frames.
-
 ### R051 — Capture dev screenshots of all 9 sections across light and dark mode at 390px (mobile), 1440px (desktop), and 1600px (wide desktop), stored in structured folders under `_design/screenshots/dev/`.
 - Class: quality-attribute
 - Status: active
@@ -223,6 +212,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0.
 - Notes: S05 retook all 7 screenshots and confirmed 0 discrepancies. Desktop sanity check at 1440×900 confirmed no regressions.
 
+### R050 — Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
+- Class: quality-attribute
+- Status: validated
+- Description: Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
+- Why it matters: Dark reference screenshots are needed for visual comparison — without them there's no source of truth for dark mode QA.
+- Source: user
+- Primary owning slice: M010-jgngfg/S01
+- Supporting slices: none
+- Validation: 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18. All non-empty (`find ... -empty` returns nothing). `find ... -size +0c | wc -l` returns 18. Named 001–009 in both desktop/ and mobile/ subdirectories. File sizes range 4.6–268 KB. Exported at 2x scale via pencil MCP.
+- Notes: Use MCP export_nodes to generate PNGs from .pen dark frames.
+
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -302,7 +302,7 @@ This file is the explicit capability and coverage contract for the project.
 | R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04 applied md:items-center md:text-center responsive classes. Grep confirms bare centering classes removed. S05 visual comparison of 006_contacto.png at 390×844 @2x confirms left-aligned header and full-width form/info cards on mobile. |
 | R044 | quality-attribute | validated | M009-lxoyrb/S01 | none | S01 removed extra sentences from Java Ecosystem and APIs & Integration cards (grep confirms 0 matches for removed phrases). S05 visual comparison of 003_skills.png at 390×844 @2x confirms all text matches design. |
 | R045 | quality-attribute | validated | M009-lxoyrb/S05 | none | S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0. |
-| R050 | quality-attribute | active | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18, all non-empty, named 001–009 in both desktop/ and mobile/ subdirectories. |
+| R050 | quality-attribute | validated | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18. All non-empty (`find ... -empty` returns nothing). `find ... -size +0c | wc -l` returns 18. Named 001–009 in both desktop/ and mobile/ subdirectories. File sizes range 4.6–268 KB. Exported at 2x scale via pencil MCP. |
 | R051 | quality-attribute | active | M010-jgngfg/S02 | none | unmapped |
 | R052 | quality-attribute | active | M010-jgngfg/S03 | none | unmapped |
 | R053 | quality-attribute | active | M010-jgngfg/S04 | none | unmapped |
@@ -312,7 +312,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 7
-- Mapped to slices: 7
-- Validated: 13 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045)
+- Active requirements: 6
+- Mapped to slices: 6
+- Validated: 14 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050)
 - Unmapped active requirements: 0
