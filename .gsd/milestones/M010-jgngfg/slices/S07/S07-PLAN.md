@@ -55,7 +55,7 @@
   - Verify: `node _design/count-screenshots.mjs` exits 0 (54/54 passed)
   - Done when: All 54 dev screenshots exist, are non-zero bytes, and reflect the post-fix build
 
-- [ ] **T02: Compare all design↔dev pairs and confirm 0 discrepancies** `est:30m`
+- [x] **T02: Compare all design↔dev pairs and confirm 0 discrepancies** `est:30m`
   - Why: This is the slice's real deliverable — the proof that S03–S06 fixes produce a pixel-faithful implementation matching the .pen design. Validates R056.
   - Files: `_design/screenshots/design/{light,dark}/{desktop,mobile}/*.png`, `_design/screenshots/dev/{light,dark}/{mobile,desktop}/*.png`, `_design/screenshots/dev/{light,dark}/wide/*.png`
   - Do: Load each design reference PNG alongside its matching dev PNG and visually compare. Process in 4 batches: light/desktop (9 pairs), light/mobile (9 pairs), dark/desktop (9 pairs), dark/mobile (9 pairs). For the 18 wide screenshots, verify content stays within 1440px and backgrounds extend full width. Note: design light/mobile `002_header.png` matches dev `002_hero.png` (same section, legacy naming).
