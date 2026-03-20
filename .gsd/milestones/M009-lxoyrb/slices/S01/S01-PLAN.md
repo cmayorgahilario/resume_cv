@@ -19,12 +19,19 @@
 
 ## Tasks
 
-- [ ] **T01: Fix Hero button proportions and Skills text content** `est:15m`
+- [x] **T01: Fix Hero button proportions and Skills text content** `est:15m`
   - Why: Closes both R040 (Hero CTA proportions) and R044 (Skills text fidelity) — the only two fixes in this slice
   - Files: `src/components/sections/Hero.astro`, `src/components/sections/Skills.astro`
   - Do: (1) Add `flex-1 md:flex-initial text-center` to both `<a>` tags in the Hero CTA row. (2) Remove the second sentence from the Java Ecosystem description in Skills. (3) Remove the second sentence from the APIs & Integration description in Skills. (4) Run `npm run build` to confirm no regressions.
   - Verify: `npm run build` exits 0; grep confirms `flex-1` in Hero.astro; grep confirms "Arquitectura de microservicios" absent from Skills.astro
   - Done when: Both files edited, build passes, verification commands exit 0
+
+## Observability / Diagnostics
+
+- **Runtime signals:** These are static Astro components with no runtime JS — no client-side signals to monitor. Changes are purely presentational (CSS classes and static text).
+- **Inspection surfaces:** Visual inspection at 390×844 viewport confirms button proportions. Text content verified via `grep` or `node -e` checks against the source files.
+- **Failure visibility:** Build failure (`npm run build` non-zero exit) is the primary failure signal. Incorrect text or missing classes are caught by the verification node scripts.
+- **Redaction constraints:** None — no secrets or PII involved in these static content edits.
 
 ## Files Likely Touched
 

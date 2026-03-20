@@ -37,6 +37,12 @@ Two surgical edits to fix mobile visual fidelity against design screenshots. Fir
 - `node -e "const fs=require('fs');const h=fs.readFileSync('src/components/sections/Hero.astro','utf8');if(!h.includes('flex-1')){process.exit(1)};if(!h.includes('md:flex-initial')){process.exit(1)};if(!h.includes('text-center')){process.exit(1)};console.log('Hero PASS')"`
 - `node -e "const fs=require('fs');const s=fs.readFileSync('src/components/sections/Skills.astro','utf8');if(s.includes('Arquitectura de microservicios')){process.exit(1)};if(s.includes('Implementación de contratos')){process.exit(1)};console.log('Skills PASS')"`
 
+## Observability Impact
+
+- **Signals changed:** No runtime signals — both edits are static HTML/CSS (Tailwind classes and content text). No JS, no API calls, no client-side state.
+- **How to inspect:** Verify via `grep` for class names (`flex-1`, `md:flex-initial`, `text-center`) in Hero.astro and absence of removed sentences in Skills.astro. Visual inspection at mobile viewport (390×844) confirms button proportions.
+- **Failure state visibility:** Build breakage surfaces immediately via `npm run build` exit code. Visual regression (buttons not spanning width, wrong text) is detectable via browser screenshot at mobile breakpoint.
+
 ## Inputs
 
 - `src/components/sections/Hero.astro` — current Hero section with narrow CTA buttons missing flex-1
