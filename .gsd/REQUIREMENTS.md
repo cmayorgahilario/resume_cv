@@ -37,17 +37,6 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: Structural grep checks confirm: 4 inline mobile blocks (`flex items-center gap-2 md:hidden`), 8 hidden-on-mobile columns (`hidden md:flex`), 3 border dividers (`border-b`). `npm run build` exits 0. Visual confirmation deferred to S05.
 - Notes: S03/T01 restructured all 4 experience items for inline date+company on mobile. Final visual validation against design screenshot pending in S05.
 
-### R043 — La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
-- Class: quality-attribute
-- Status: active
-- Description: La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
-- Why it matters: El diseño muestra layout left-aligned y full-width; la implementación actual centra el header y deja el form/info card al ~60-70% del ancho.
-- Source: user
-- Primary owning slice: M009-lxoyrb/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Comparar contra `_design/screenshots/design/006_contacto.png`.
-
 ### R044 — El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
 - Class: quality-attribute
 - Status: active
@@ -146,6 +135,17 @@ This file is the explicit capability and coverage contract for the project.
 - Supporting slices: none
 - Validation: 36/36 section-mode combinations pass visual QA. Token audit script exits 0 with zero mismatches.
 
+### R043 — La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
+- Class: quality-attribute
+- Status: validated
+- Description: La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
+- Why it matters: El diseño muestra layout left-aligned y full-width; la implementación actual centra el header y deja el form/info card al ~60-70% del ancho.
+- Source: user
+- Primary owning slice: M009-lxoyrb/S04
+- Supporting slices: none
+- Validation: S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards.
+- Notes: Comparar contra `_design/screenshots/design/006_contacto.png`.
+
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -222,13 +222,13 @@ This file is the explicit capability and coverage contract for the project.
 | R040 | quality-attribute | active | M009-lxoyrb/S01 | none | Hero.astro CTA `<a>` tags include `flex-1 md:flex-initial text-center`; `npm run build` exits 0; at 390×844 viewport, both buttons span nearly full container width equally. |
 | R041 | quality-attribute | active | M009-lxoyrb/S02 | none | Source grep: 6 negative checks (old phrases absent) + 6 positive checks (design phrases present) all pass. npm run build exits 0. Full visual validation pending S05 screenshot comparison. |
 | R042 | quality-attribute | active | M009-lxoyrb/S03 | none | Structural grep checks confirm: 4 inline mobile blocks (`flex items-center gap-2 md:hidden`), 8 hidden-on-mobile columns (`hidden md:flex`), 3 border dividers (`border-b`). `npm run build` exits 0. Visual confirmation deferred to S05. |
-| R043 | quality-attribute | active | M009-lxoyrb/S04 | none | unmapped |
+| R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards. |
 | R044 | quality-attribute | active | M009-lxoyrb/S01 | none | Skills.astro Java Ecosystem description ends at "…para servicios robustos y escalables." (no extra sentence); APIs & Integration description ends at "…servicios de terceros." (no extra sentence); grep confirms "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro. |
 | R045 | quality-attribute | active | M009-lxoyrb/S05 | none | unmapped |
 
 ## Coverage Summary
 
-- Active requirements: 6
-- Mapped to slices: 6
-- Validated: 7 (R001, R002, R003, R004, R005, R006, R008)
+- Active requirements: 5
+- Mapped to slices: 5
+- Validated: 8 (R001, R002, R003, R004, R005, R006, R008, R043)
 - Unmapped active requirements: 0
