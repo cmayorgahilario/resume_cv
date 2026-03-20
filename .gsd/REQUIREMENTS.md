@@ -2,6 +2,85 @@
 
 This file is the explicit capability and coverage contract for the project.
 
+## Active
+
+### R050 — Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
+- Class: quality-attribute
+- Status: active
+- Description: Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
+- Why it matters: Dark reference screenshots are needed for visual comparison — without them there's no source of truth for dark mode QA.
+- Source: user
+- Primary owning slice: M010-jgngfg/S01
+- Supporting slices: none
+- Validation: 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18, all non-empty, named 001–009 in both desktop/ and mobile/ subdirectories.
+- Notes: Use MCP export_nodes to generate PNGs from .pen dark frames.
+
+### R051 — Capture dev screenshots of all 9 sections across light and dark mode at 390px (mobile), 1440px (desktop), and 1600px (wide desktop), stored in structured folders under `_design/screenshots/dev/`.
+- Class: quality-attribute
+- Status: active
+- Description: Capture dev screenshots of all 9 sections across light and dark mode at 390px (mobile), 1440px (desktop), and 1600px (wide desktop), stored in structured folders under `_design/screenshots/dev/`.
+- Why it matters: Comprehensive dev screenshots enable 1:1 comparison against design references across all mode×viewport combinations.
+- Source: user
+- Primary owning slice: M010-jgngfg/S02
+- Supporting slices: none
+- Validation: unmapped
+- Notes: The 1600px captures are specifically to validate the max-width constraint.
+
+### R052 — On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
+- Class: quality-attribute
+- Status: active
+- Description: On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
+- Why it matters: User observed that sections stretch beyond 1440px while the header stays fixed, creating inconsistency. The design specifies 1440px as the content width.
+- Source: user
+- Primary owning slice: M010-jgngfg/S03
+- Supporting slices: none
+- Validation: unmapped
+- Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
+
+### R053 — On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
+- Class: quality-attribute
+- Status: active
+- Description: On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
+- Why it matters: Current implementation stacks brand and nav columns vertically, which doesn't match the .pen design's horizontal layout.
+- Source: user
+- Primary owning slice: M010-jgngfg/S04
+- Supporting slices: none
+- Validation: unmapped
+- Notes: .pen node mDBg0 > nAZ1E uses justifyContent:space_between with footerBrand left, footerNav right.
+
+### R054 — On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
+- Class: quality-attribute
+- Status: active
+- Description: On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
+- Why it matters: The .pen mobile design (hoMyO) uses a height:5 colored rectangle as the first child of each card in a vertical layout. The current implementation uses a w-[5px] left stripe in a horizontal layout.
+- Source: user
+- Primary owning slice: M010-jgngfg/S05
+- Supporting slices: none
+- Validation: unmapped
+- Notes: This requires changing the card layout from flex-row (left stripe) to vertical (top stripe) on mobile, while preserving the desktop left-stripe layout.
+
+### R055 — On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
+- Class: quality-attribute
+- Status: active
+- Description: On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
+- Why it matters: The current pb-8 + border-b creates a different spacing rhythm than the design's structured gap:24 + padding-bottom:24 with divider-inside-item pattern.
+- Source: user
+- Primary owning slice: M010-jgngfg/S06
+- Supporting slices: none
+- Validation: unmapped
+- Notes: Items 2, 3, and 4 are visibly too close to the divider line in current implementation.
+
+### R056 — All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
+- Class: quality-attribute
+- Status: active
+- Description: All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
+- Why it matters: This is the final proof that the implementation matches the design across all combinations.
+- Source: user
+- Primary owning slice: M010-jgngfg/S07
+- Supporting slices: none
+- Validation: unmapped
+- Notes: 1600px screenshots are for max-width validation only — no design reference exists at 1600px.
+
 ## Validated
 
 ### R001 — El sitio debe renderizar la homepage completa en light mode, fiel al diseño `.pen`: Header, Hero, Sobre Mí, Skills, Proyectos, Experiencia, Educación, Contacto, Footer.
@@ -144,85 +223,6 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0.
 - Notes: S05 retook all 7 screenshots and confirmed 0 discrepancies. Desktop sanity check at 1440×900 confirmed no regressions.
 
-## Active
-
-### R050 — Dark mode design reference screenshots exported from .pen
-- Class: quality-attribute
-- Status: active
-- Description: Export section-by-section PNGs from the .pen file's dark frames (desktop j1mfs + mobile euVyc) into `_design/screenshots/design/dark/desktop/` and `_design/screenshots/design/dark/mobile/`, matching the 001–009 naming format used in the light folder.
-- Why it matters: Dark reference screenshots are needed for visual comparison — without them there's no source of truth for dark mode QA.
-- Source: user
-- Primary owning slice: M010-jgngfg/S01
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Use MCP export_nodes to generate PNGs from .pen dark frames.
-
-### R051 — Dev screenshots captured at 390px, 1440px, 1600px for light+dark
-- Class: quality-attribute
-- Status: active
-- Description: Capture dev screenshots of all 9 sections across light and dark mode at 390px (mobile), 1440px (desktop), and 1600px (wide desktop), stored in structured folders under `_design/screenshots/dev/`.
-- Why it matters: Comprehensive dev screenshots enable 1:1 comparison against design references across all mode×viewport combinations.
-- Source: user
-- Primary owning slice: M010-jgngfg/S02
-- Supporting slices: none
-- Validation: unmapped
-- Notes: The 1600px captures are specifically to validate the max-width constraint.
-
-### R052 — Page max-width constraint: content doesn't stretch beyond 1440px on wider screens
-- Class: quality-attribute
-- Status: active
-- Description: On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
-- Why it matters: User observed that sections stretch beyond 1440px while the header stays fixed, creating inconsistency. The design specifies 1440px as the content width.
-- Source: user
-- Primary owning slice: M010-jgngfg/S03
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
-
-### R053 — Footer desktop layout: brand left, nav/social columns right (not stacked)
-- Class: quality-attribute
-- Status: active
-- Description: On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
-- Why it matters: Current implementation stacks brand and nav columns vertically, which doesn't match the .pen design's horizontal layout.
-- Source: user
-- Primary owning slice: M010-jgngfg/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: .pen node mDBg0 > nAZ1E uses justifyContent:space_between with footerBrand left, footerNav right.
-
-### R054 — Educación mobile cards: colored border on top, not left side
-- Class: quality-attribute
-- Status: active
-- Description: On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
-- Why it matters: The .pen mobile design (hoMyO) uses a height:5 colored rectangle as the first child of each card in a vertical layout. The current implementation uses a w-[5px] left stripe in a horizontal layout.
-- Source: user
-- Primary owning slice: M010-jgngfg/S05
-- Supporting slices: none
-- Validation: unmapped
-- Notes: This requires changing the card layout from flex-row (left stripe) to vertical (top stripe) on mobile, while preserving the desktop left-stripe layout.
-
-### R055 — Experiencia mobile: items have proper spacing from divider line
-- Class: quality-attribute
-- Status: active
-- Description: On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
-- Why it matters: The current pb-8 + border-b creates a different spacing rhythm than the design's structured gap:24 + padding-bottom:24 with divider-inside-item pattern.
-- Source: user
-- Primary owning slice: M010-jgngfg/S06
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Items 2, 3, and 4 are visibly too close to the divider line in current implementation.
-
-### R056 — All screenshot pairs (design vs dev) pass visual comparison with 0 discrepancies
-- Class: quality-attribute
-- Status: active
-- Description: All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
-- Why it matters: This is the final proof that the implementation matches the design across all combinations.
-- Source: user
-- Primary owning slice: M010-jgngfg/S07
-- Supporting slices: none
-- Validation: unmapped
-- Notes: 1600px screenshots are for max-width validation only — no design reference exists at 1600px.
-
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -302,7 +302,7 @@ This file is the explicit capability and coverage contract for the project.
 | R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04 applied md:items-center md:text-center responsive classes. Grep confirms bare centering classes removed. S05 visual comparison of 006_contacto.png at 390×844 @2x confirms left-aligned header and full-width form/info cards on mobile. |
 | R044 | quality-attribute | validated | M009-lxoyrb/S01 | none | S01 removed extra sentences from Java Ecosystem and APIs & Integration cards (grep confirms 0 matches for removed phrases). S05 visual comparison of 003_skills.png at 390×844 @2x confirms all text matches design. |
 | R045 | quality-attribute | validated | M009-lxoyrb/S05 | none | S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0. |
-| R050 | quality-attribute | active | M010-jgngfg/S01 | none | unmapped |
+| R050 | quality-attribute | active | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18, all non-empty, named 001–009 in both desktop/ and mobile/ subdirectories. |
 | R051 | quality-attribute | active | M010-jgngfg/S02 | none | unmapped |
 | R052 | quality-attribute | active | M010-jgngfg/S03 | none | unmapped |
 | R053 | quality-attribute | active | M010-jgngfg/S04 | none | unmapped |
@@ -312,7 +312,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 7 (R050, R051, R052, R053, R054, R055, R056)
+- Active requirements: 7
 - Mapped to slices: 7
 - Validated: 13 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045)
 - Unmapped active requirements: 0
