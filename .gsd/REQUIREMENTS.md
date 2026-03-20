@@ -12,8 +12,8 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M010-jgngfg/S04
 - Supporting slices: none
-- Validation: unmapped
-- Notes: .pen node mDBg0 > nAZ1E uses justifyContent:space_between with footerBrand left, footerNav right.
+- Validation: S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison.
+- Notes: Structural classes verified present. Full visual validation pending S07 screenshot retake and comparison against .pen design reference.
 
 ### R054 — On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
 - Class: quality-attribute
@@ -305,7 +305,7 @@ This file is the explicit capability and coverage contract for the project.
 | R050 | quality-attribute | validated | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18. All non-empty (`find ... -empty` returns nothing). `find ... -size +0c | wc -l` returns 18. Named 001–009 in both desktop/ and mobile/ subdirectories. File sizes range 4.6–268 KB. Exported at 2x scale via pencil MCP. |
 | R051 | quality-attribute | validated | M010-jgngfg/S02 | none | 54 PNG screenshots captured (9 sections × 2 modes × 3 viewports). `node _design/count-screenshots.mjs` exits 0 confirming all files exist in correct folder structure with correct naming and non-zero sizes. Failure-path verified: script correctly detects missing files and exits 1. |
 | R052 | quality-attribute | validated | M010-jgngfg/S03 | none | S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern. |
-| R053 | quality-attribute | active | M010-jgngfg/S04 | none | unmapped |
+| R053 | quality-attribute | active | M010-jgngfg/S04 | none | S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison. |
 | R054 | quality-attribute | active | M010-jgngfg/S05 | none | unmapped |
 | R055 | quality-attribute | active | M010-jgngfg/S06 | none | unmapped |
 | R056 | quality-attribute | active | M010-jgngfg/S07 | none | unmapped |
