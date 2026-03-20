@@ -21,12 +21,21 @@
 
 ## Tasks
 
-- [ ] **T01: Restructure Experiencia mobile layout for inline date+company and hidden timeline** `est:25m`
+- [x] **T01: Restructure Experiencia mobile layout for inline date+company and hidden timeline** `est:25m`
   - Why: R042 requires date and company to appear inline on mobile. Currently they're stacked vertically, the timeline column is visible on mobile, and there are no dividers between items.
   - Files: `src/components/sections/Experiencia.astro`
   - Do: (1) Add `hidden` to center timeline column divs so they become `hidden md:flex`. (2) Change all 4 mobile date+company blocks from `flex flex-col gap-0.5` to `flex items-center gap-2` and add inline dot + `·` separator. (3) Add `border-b border-[var(--border-default)] md:border-b-0` to items 1-3 wrappers. Preserve filled vs hollow dot distinction. Verify all 4 items changed.
   - Verify: `npm run build` exits 0; grep counts match plan verification section
   - Done when: All 4 items have inline date+company on mobile, timeline hidden on mobile, dividers between items 1-3, desktop layout unchanged, build passes
+
+## Observability / Diagnostics
+
+This slice is a pure static layout change — no runtime behavior, API calls, or client-side JavaScript. Diagnostic signals:
+
+- **Build-time verification:** `npm run build` exits 0, confirming the Astro template compiles cleanly.
+- **Structural grep checks:** The grep-based verification commands in the Verification section serve as the primary diagnostic surface for confirming correct class application.
+- **Visual inspection:** At 390×844 viewport, the Experiencia section should show inline date·company rows with dots and dividers. Desktop viewport should show the original timeline layout unchanged.
+- **Failure visibility:** A malformed template will cause `npm run build` to fail with an Astro compilation error pointing to the exact line. Missing classes will be caught by the grep count checks.
 
 ## Files Likely Touched
 
