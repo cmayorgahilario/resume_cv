@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Backgrounds */
   --bg-java-card: #0F0A2A;
@@ -41,6 +43,7 @@
   --color-accent-overlay: #7c3aed33;
   --color-accent-overlay-light: #7c3aed22;
   --color-primary: #4338ca;
+  --color-primary-bg: #4338CA;
   --color-green: #22c55e;
   --color-amber: #f59e0b;
   --color-indigo-light: #a5b4fc;
@@ -52,6 +55,44 @@
 
   /* Other */
   --divider: #374151;
+}
+
+.dark {
+  /* Backgrounds */
+  --bg-primary: #0f0f11;
+  --bg-alt: #1a1a2e;
+  --bg-card: #1e1e2a;
+  --bg-card-alt: #2a2a3a;
+  --bg-card-muted: #2d2d3a;
+  --bg-footer: #0a0a0c;
+  --bg-green: #0a2e1e;
+  --bg-amber: #1f1d0a;
+  --bg-hero-photo: #1e1e2a;
+  --bg-indigo-soft: #0f0a2a;
+  --bg-indigo-pill: #2d2558;
+  --bg-amber-pill: #3d2e0a;
+  --bg-input: #1a1a2e;
+  --bg-stats: #0f0a2a;
+
+  /* Text */
+  --text-heading: #f1f1f3;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #d1d5db;
+  --text-green: #4ade80;
+  --text-amber-accent: #fbbf24;
+  --text-amber-dark: #d97706;
+  --text-footer-link: #a1a1aa;
+
+  /* Accent / Brand */
+  --color-primary: #818CF8;
+  --color-primary-bg: #4338CA;
+
+  /* Borders */
+  --border-default: #2d2d3a;
+
+  /* Other */
+  --divider: #4b5563;
 }
 
 @layer base {
