@@ -2,63 +2,6 @@
 
 This file is the explicit capability and coverage contract for the project.
 
-## Active
-
-### R040 — Los botones "Contactar" y "Ver Proyectos" en la sección Hero en mobile deben coincidir con las proporciones del diseño `.pen` (más anchos, ocupando mayor porcentaje del ancho de pantalla).
-- Class: quality-attribute
-- Status: active
-- Description: Los botones "Contactar" y "Ver Proyectos" en la sección Hero en mobile deben coincidir con las proporciones del diseño `.pen` (más anchos, ocupando mayor porcentaje del ancho de pantalla).
-- Why it matters: Los botones actuales son visualmente más pequeños que en el diseño, afectando la fidelidad visual.
-- Source: user
-- Primary owning slice: M009-lxoyrb/S01
-- Supporting slices: none
-- Validation: Hero.astro CTA `<a>` tags include `flex-1 md:flex-initial text-center`; `npm run build` exits 0; at 390×844 viewport, both buttons span nearly full container width equally.
-- Notes: S01 confirmed: Hero.astro CTA buttons now include `flex-1 md:flex-initial text-center`. Build passes. Pixel-level visual match deferred to S05.
-
-### R041 — El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
-- Class: quality-attribute
-- Status: active
-- Description: El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
-- Why it matters: Múltiples textos fueron reescritos durante la implementación y no coinciden con el diseño original. Esta es la sección con más diferencias de contenido.
-- Source: user
-- Primary owning slice: M009-lxoyrb/S02
-- Supporting slices: none
-- Validation: Source grep: 6 negative checks (old phrases absent) + 6 positive checks (design phrases present) all pass. npm run build exits 0. Full visual validation pending S05 screenshot comparison.
-- Notes: S02 applied all 6 text corrections (subtitle + 5 card descriptions). Source-level grep verification confirms all design-verbatim phrases present and all old phrases removed. Visual confirmation deferred to S05.
-
-### R042 — En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
-- Class: quality-attribute
-- Status: active
-- Description: En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
-- Why it matters: El diseño muestra el formato inline y la implementación actual los apila, creando una discrepancia visual notable.
-- Source: user
-- Primary owning slice: M009-lxoyrb/S03
-- Supporting slices: none
-- Validation: Structural grep checks confirm: 4 inline mobile blocks (`flex items-center gap-2 md:hidden`), 8 hidden-on-mobile columns (`hidden md:flex`), 3 border dividers (`border-b`). `npm run build` exits 0. Visual confirmation deferred to S05.
-- Notes: S03/T01 restructured all 4 experience items for inline date+company on mobile. Final visual validation against design screenshot pending in S05.
-
-### R044 — El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
-- Class: quality-attribute
-- Status: active
-- Description: El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
-- Why it matters: Verificación de fidelidad de contenido — patrón conocido de textos reescritos que persisten sin detección (KNOWLEDGE.md M007).
-- Source: user
-- Primary owning slice: M009-lxoyrb/S01
-- Supporting slices: none
-- Validation: Skills.astro Java Ecosystem description ends at "…para servicios robustos y escalables." (no extra sentence); APIs & Integration description ends at "…servicios de terceros." (no extra sentence); grep confirms "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro.
-- Notes: S01 confirmed: "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro. Java Ecosystem ends at "…para servicios robustos y escalables." APIs & Integration ends at "…servicios de terceros." Visual match deferred to S05.
-
-### R045 — Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
-- Class: quality-attribute
-- Status: active
-- Description: Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
-- Why it matters: Verificación integral de que todas las correcciones se aplicaron correctamente y no introdujeron regresiones.
-- Source: user
-- Primary owning slice: M009-lxoyrb/S05
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Retomar screenshots con el mismo script/proceso que generó `_design/screenshots/dev/`. Sobre Mí y Footer ya están alineados.
-
 ## Validated
 
 ### R001 — El sitio debe renderizar la homepage completa en light mode, fiel al diseño `.pen`: Header, Hero, Sobre Mí, Skills, Proyectos, Experiencia, Educación, Contacto, Footer.
@@ -135,6 +78,39 @@ This file is the explicit capability and coverage contract for the project.
 - Supporting slices: none
 - Validation: 36/36 section-mode combinations pass visual QA. Token audit script exits 0 with zero mismatches.
 
+### R040 — Los botones "Contactar" y "Ver Proyectos" en la sección Hero en mobile deben coincidir con las proporciones del diseño `.pen` (más anchos, ocupando mayor porcentaje del ancho de pantalla).
+- Class: quality-attribute
+- Status: validated
+- Description: Los botones "Contactar" y "Ver Proyectos" en la sección Hero en mobile deben coincidir con las proporciones del diseño `.pen` (más anchos, ocupando mayor porcentaje del ancho de pantalla).
+- Why it matters: Los botones actuales son visualmente más pequeños que en el diseño, afectando la fidelidad visual.
+- Source: user
+- Primary owning slice: M009-lxoyrb/S01
+- Supporting slices: none
+- Validation: S05 visual comparison of retaken dev screenshot (001_hero.png) at 390×844 @2x against design screenshot confirms CTA buttons match design proportions — both buttons span nearly full container width equally. Build passes.
+- Notes: S01 applied flex-1 md:flex-initial text-center. S05 confirmed visual match via screenshot comparison.
+
+### R041 — El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
+- Class: quality-attribute
+- Status: validated
+- Description: El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
+- Why it matters: Múltiples textos fueron reescritos durante la implementación y no coinciden con el diseño original. Esta es la sección con más diferencias de contenido.
+- Source: user
+- Primary owning slice: M009-lxoyrb/S02
+- Supporting slices: none
+- Validation: S05 visual comparison of retaken dev screenshot (004_proyectos.png) at 390×844 @2x against design screenshot confirms subtitle and all 6 card descriptions match design verbatim. Source grep + visual confirmation both pass.
+- Notes: S02 corrected subtitle + 5 card descriptions. S05 confirmed visual match via screenshot comparison.
+
+### R042 — En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
+- Class: quality-attribute
+- Status: validated
+- Description: En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
+- Why it matters: El diseño muestra el formato inline y la implementación actual los apila, creando una discrepancia visual notable.
+- Source: user
+- Primary owning slice: M009-lxoyrb/S03
+- Supporting slices: none
+- Validation: S05 visual comparison of retaken dev screenshot (005_experiencia.png) at 390×844 @2x against design screenshot confirms all 4 experience items show inline date+company format on mobile. Build passes.
+- Notes: S03 restructured inline date+company. S05 confirmed visual match via screenshot comparison.
+
 ### R043 — La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
 - Class: quality-attribute
 - Status: validated
@@ -145,6 +121,28 @@ This file is the explicit capability and coverage contract for the project.
 - Supporting slices: none
 - Validation: S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards.
 - Notes: Comparar contra `_design/screenshots/design/006_contacto.png`.
+
+### R044 — El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
+- Class: quality-attribute
+- Status: validated
+- Description: El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
+- Why it matters: Verificación de fidelidad de contenido — patrón conocido de textos reescritos que persisten sin detección (KNOWLEDGE.md M007).
+- Source: user
+- Primary owning slice: M009-lxoyrb/S01
+- Supporting slices: none
+- Validation: S05 visual comparison of retaken dev screenshot (003_skills.png) at 390×844 @2x against design screenshot confirms all Skills section text content matches design. No extra sentences, no rewritten descriptions.
+- Notes: S01 verified text matches design. S05 confirmed visual match via screenshot comparison.
+
+### R045 — Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
+- Class: quality-attribute
+- Status: validated
+- Description: Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
+- Why it matters: Verificación integral de que todas las correcciones se aplicaron correctamente y no introdujeron regresiones.
+- Source: user
+- Primary owning slice: M009-lxoyrb/S05
+- Supporting slices: none
+- Validation: S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0.
+- Notes: S05 retook all 7 screenshots and confirmed 0 discrepancies. Desktop sanity check at 1440×900 confirmed no regressions.
 
 ## Deferred
 
@@ -219,16 +217,16 @@ This file is the explicit capability and coverage contract for the project.
 | R021 | integration | deferred | none | none | unmapped |
 | R030 | anti-feature | out-of-scope | none | none | n/a |
 | R031 | anti-feature | out-of-scope | none | none | n/a |
-| R040 | quality-attribute | active | M009-lxoyrb/S01 | none | Hero.astro CTA `<a>` tags include `flex-1 md:flex-initial text-center`; `npm run build` exits 0; at 390×844 viewport, both buttons span nearly full container width equally. |
-| R041 | quality-attribute | active | M009-lxoyrb/S02 | none | Source grep: 6 negative checks (old phrases absent) + 6 positive checks (design phrases present) all pass. npm run build exits 0. Full visual validation pending S05 screenshot comparison. |
-| R042 | quality-attribute | active | M009-lxoyrb/S03 | none | Structural grep checks confirm: 4 inline mobile blocks (`flex items-center gap-2 md:hidden`), 8 hidden-on-mobile columns (`hidden md:flex`), 3 border dividers (`border-b`). `npm run build` exits 0. Visual confirmation deferred to S05. |
+| R040 | quality-attribute | validated | M009-lxoyrb/S01 | none | S05 visual comparison of retaken dev screenshot (001_hero.png) at 390×844 @2x against design screenshot confirms CTA buttons match design proportions — both buttons span nearly full container width equally. Build passes. |
+| R041 | quality-attribute | validated | M009-lxoyrb/S02 | none | S05 visual comparison of retaken dev screenshot (004_proyectos.png) at 390×844 @2x against design screenshot confirms subtitle and all 6 card descriptions match design verbatim. Source grep + visual confirmation both pass. |
+| R042 | quality-attribute | validated | M009-lxoyrb/S03 | none | S05 visual comparison of retaken dev screenshot (005_experiencia.png) at 390×844 @2x against design screenshot confirms all 4 experience items show inline date+company format on mobile. Build passes. |
 | R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards. |
-| R044 | quality-attribute | active | M009-lxoyrb/S01 | none | Skills.astro Java Ecosystem description ends at "…para servicios robustos y escalables." (no extra sentence); APIs & Integration description ends at "…servicios de terceros." (no extra sentence); grep confirms "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro. |
-| R045 | quality-attribute | active | M009-lxoyrb/S05 | none | unmapped |
+| R044 | quality-attribute | validated | M009-lxoyrb/S01 | none | S05 visual comparison of retaken dev screenshot (003_skills.png) at 390×844 @2x against design screenshot confirms all Skills section text content matches design. No extra sentences, no rewritten descriptions. |
+| R045 | quality-attribute | validated | M009-lxoyrb/S05 | none | S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0. |
 
 ## Coverage Summary
 
-- Active requirements: 5
-- Mapped to slices: 5
-- Validated: 8 (R001, R002, R003, R004, R005, R006, R008, R043)
+- Active requirements: 0
+- Mapped to slices: 0
+- Validated: 13 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045)
 - Unmapped active requirements: 0
