@@ -14,15 +14,23 @@
 - `grep -c "flex-1 md:flex-initial text-center" src/components/sections/Hero.astro` returns `2` (both CTA buttons have the classes)
 - `npm run build` exits 0
 - Visual comparison: `_design/screenshots/dev/001_hero.png` matches `_design/screenshots/design/001_hero.png` — both buttons span equal width
+- Diagnostic: `grep -n "flex-1" src/components/sections/Hero.astro` shows exactly 2 lines, confirming no accidental duplicate or missing flex-1 class
 
 ## Tasks
 
-- [ ] **T01: Add flex classes to "Ver Proyectos" button, rebuild, and retake hero screenshot** `est:15m`
+- [x] **T01: Add flex classes to "Ver Proyectos" button, rebuild, and retake hero screenshot** `est:15m`
   - Why: S01 added `flex-1 md:flex-initial text-center` to the "Contactar" button but missed the "Ver Proyectos" button — both must have these classes for equal-width mobile layout
   - Files: `src/components/sections/Hero.astro`, `_design/screenshots/dev/001_hero.png`
   - Do: Add `flex-1 md:flex-initial text-center` to the "Ver Proyectos" `<a>` tag class list. Grep to confirm both buttons have the classes. Run `npm run build`. Serve `dist/` on port 4322 via `npx serve dist -l 4322`. Run `node _design/take-screenshots.mjs` to retake screenshots. Visually compare `_design/screenshots/dev/001_hero.png` against `_design/screenshots/design/001_hero.png`.
   - Verify: `grep -c "flex-1 md:flex-initial text-center" src/components/sections/Hero.astro` returns `2` AND `npm run build` exits 0
   - Done when: Both CTA buttons have identical flex/text-center classes, build passes, and retaken hero screenshot visually matches design proportions
+
+## Observability / Diagnostics
+
+- **Inspection surface:** `grep -c "flex-1 md:flex-initial text-center" src/components/sections/Hero.astro` — returns `2` when both buttons are correctly patched, `1` if only one is done, `0` if neither.
+- **Failure visibility:** If the grep count is not `2`, the visual layout will be immediately obvious in the hero screenshot — one button will be narrower than the other on mobile viewports.
+- **Diagnostic check:** `_design/screenshots/dev/001_hero.png` modification timestamp confirms whether screenshots were retaken after the fix. A stale timestamp means the fix wasn't visually verified.
+- **No runtime signals** — this is a static CSS class change with no JavaScript behavior.
 
 ## Files Likely Touched
 
