@@ -70,21 +70,23 @@
     <!-- Right group: theme toggle + CTA -->
     <div class="flex items-center gap-4">
 
-      <!-- Visual-only theme toggle pill (no JS — M002 adds interactivity) -->
-      <div
-        class="bg-[var(--bg-alt)] rounded-full p-[3px] flex gap-[2px]"
-        aria-label="Cambiar tema (próximamente)"
-        role="img"
+      <!-- Theme toggle pill — functional button (M002) -->
+      <button
+        type="button"
+        id="theme-toggle"
+        aria-label="Cambiar tema"
+        class="bg-[var(--bg-alt)] dark:bg-white rounded-full p-[3px] flex gap-[2px] cursor-pointer border-none outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
       >
-        <!-- Sun button (active / light mode indicator) -->
+        <!-- Sun icon (active in light mode) -->
         <div
-          class="w-[26px] h-[26px] rounded-full bg-[var(--color-accent)] flex items-center justify-center"
+          id="sun-icon"
+          class="w-[26px] h-[26px] rounded-full flex items-center justify-center"
           aria-hidden="true"
         >
           <!-- Sun SVG: circle + 8 rays -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-[var(--text-on-primary)]"
+            class="w-4 h-4"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -105,9 +107,10 @@
           </svg>
         </div>
 
-        <!-- Moon button (dark mode indicator) -->
+        <!-- Moon icon (active in dark mode) -->
         <div
-          class="w-[26px] h-[26px] rounded-full flex items-center justify-center text-[var(--text-secondary)]"
+          id="moon-icon"
+          class="w-[26px] h-[26px] rounded-full flex items-center justify-center"
           aria-hidden="true"
         >
           <!-- Moon SVG: crescent -->
@@ -125,7 +128,7 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </div>
-      </div>
+      </button>
 
       <!-- CTA: Download CV -->
       <a
@@ -139,3 +142,48 @@
     </div>
   </div>
 </header>
+
+<script>
+  // Theme toggle: read initial state, wire click handler, keep icon visual in sync
+  const ACCENT_COLOR = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-accent').trim() || '#7c3aed';
+  const TEXT_ON_PRIMARY = '#ffffff';
+  const TEXT_SECONDARY = getComputedStyle(document.documentElement)
+    .getPropertyValue('--text-secondary').trim() || '#6b7280';
+
+  function updateToggleVisual() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    if (!sunIcon || !moonIcon) return;
+
+    if (isDark) {
+      // Moon is active in dark mode
+      moonIcon.style.backgroundColor = ACCENT_COLOR;
+      moonIcon.style.color = TEXT_ON_PRIMARY;
+      sunIcon.style.backgroundColor = 'transparent';
+      sunIcon.style.color = TEXT_SECONDARY;
+    } else {
+      // Sun is active in light mode
+      sunIcon.style.backgroundColor = ACCENT_COLOR;
+      sunIcon.style.color = TEXT_ON_PRIMARY;
+      moonIcon.style.backgroundColor = 'transparent';
+      moonIcon.style.color = TEXT_SECONDARY;
+    }
+  }
+
+  // Set correct initial visual immediately
+  updateToggleVisual();
+
+  // Wire click handler
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateToggleVisual();
+    });
+  }
+</script>
