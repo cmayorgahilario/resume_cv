@@ -3,25 +3,25 @@
 // Form is visual-only (no action, no JS handler) — R021 deferred
 ---
 
-<section id="contacto" class="bg-[var(--bg-primary)] py-20 px-20">
+<section id="contacto" class="bg-[var(--bg-primary)] py-12 md:py-20 px-6 md:px-20">
   <div class="max-w-[1440px] mx-auto flex flex-col gap-12">
 
     <!-- Section header: label, title, subtitle — vertical centered -->
     <div class="flex flex-col gap-4 items-center text-center">
       <span class="text-xs font-semibold tracking-[1px] text-[var(--color-primary)]">CONTACTO</span>
-      <h2 class="text-[36px] font-bold text-[var(--text-heading)]">Hablemos</h2>
+      <h2 class="text-[28px] md:text-[36px] font-bold text-[var(--text-heading)]">Hablemos</h2>
       <p class="text-[16px] text-[var(--text-secondary)]">¿Tienes un proyecto en mente? Estoy disponible para colaborar.</p>
     </div>
 
     <!-- 2-column grid: form left, contact info right -->
-    <div class="flex flex-row gap-[32px] items-start">
+    <div class="flex flex-col md:flex-row gap-8 md:gap-[32px] items-start">
 
       <!-- Left column: form -->
       <div class="flex-1">
         <form class="rounded-[8px] border-[1.5px] border-[var(--border-default)] p-8 flex flex-col gap-5">
 
           <!-- Row 1: Name + Email side by side -->
-          <div class="flex flex-row gap-4">
+          <div class="flex flex-col md:flex-row gap-4">
 
             <!-- Name field -->
             <div class="flex-1 flex flex-col gap-1.5">
@@ -69,7 +69,7 @@
       </div>
 
       <!-- Right column: contact info card -->
-      <div class="w-[360px] flex-shrink-0">
+      <div class="w-full md:w-[360px] md:flex-shrink-0">
         <div class="rounded-[8px] border-[1.5px] border-[var(--border-default)] p-8 flex flex-col gap-6">
 
           <!-- Card title -->
@@ -152,3 +152,4 @@
 
   </div>
 </section>
+tion>
