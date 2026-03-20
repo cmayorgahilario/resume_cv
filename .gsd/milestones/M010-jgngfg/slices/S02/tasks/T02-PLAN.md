@@ -37,6 +37,13 @@ Execute the rewritten screenshot script from T01 against the built static site t
 - `node _design/count-screenshots.mjs` exits 0
 - `find _design/screenshots/dev -name "*.png" | wc -l` returns 54
 
+## Observability Impact
+
+- **New artifact surface:** 54 PNG files in `_design/screenshots/dev/{light,dark}/{mobile,desktop,wide}/` provide visual regression baselines for all 9 site sections across viewports and color modes.
+- **Inspection:** `node _design/count-screenshots.mjs` gives structured pass/fail summary with per-file diagnostics. `ls -la _design/screenshots/dev/{light,dark}/{mobile,desktop,wide}/` shows file sizes.
+- **Failure state:** Missing or zero-byte PNGs are individually reported. Partial output directories reveal how far a capture run progressed before failure.
+- **No runtime signals change** — this task produces static assets, not running services.
+
 ## Inputs
 
 - `_design/take-screenshots.mjs` — rewritten screenshot script from T01

@@ -29,7 +29,7 @@
   - Verify: `node -c _design/take-screenshots.mjs && node -c _design/count-screenshots.mjs` (syntax check both files)
   - Done when: Both scripts parse without errors and the screenshot script has 9 sections, 2 modes, 3 viewports configured.
 
-- [ ] **T02: Build site, run screenshot script, and verify 54 output PNGs** `est:20m`
+- [x] **T02: Build site, run screenshot script, and verify 54 output PNGs** `est:20m`
   - Why: The script from T01 needs to be executed against the built site to produce the actual screenshots. This task handles build + serve + execute + verify.
   - Files: `_design/screenshots/dev/light/mobile/*.png`, `_design/screenshots/dev/light/desktop/*.png`, `_design/screenshots/dev/light/wide/*.png`, `_design/screenshots/dev/dark/mobile/*.png`, `_design/screenshots/dev/dark/desktop/*.png`, `_design/screenshots/dev/dark/wide/*.png`
   - Do: (1) Run `npm run build` to generate `dist/`. (2) Start static server: `npx serve dist -l 4322` in background. (3) Run `node _design/take-screenshots.mjs`. (4) Stop server. (5) Run `node _design/count-screenshots.mjs` to verify output. If any screenshots fail, debug and re-run.
