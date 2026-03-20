@@ -15,17 +15,6 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison.
 - Notes: Structural classes verified present. Full visual validation pending S07 screenshot retake and comparison against .pen design reference.
 
-### R054 — On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
-- Class: quality-attribute
-- Status: active
-- Description: On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
-- Why it matters: The .pen mobile design (hoMyO) uses a height:5 colored rectangle as the first child of each card in a vertical layout. The current implementation uses a w-[5px] left stripe in a horizontal layout.
-- Source: user
-- Primary owning slice: M010-jgngfg/S05
-- Supporting slices: none
-- Validation: unmapped
-- Notes: This requires changing the card layout from flex-row (left stripe) to vertical (top stripe) on mobile, while preserving the desktop left-stripe layout.
-
 ### R055 — On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
 - Class: quality-attribute
 - Status: active
@@ -223,6 +212,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern.
 - Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
 
+### R054 — On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
+- Class: quality-attribute
+- Status: validated
+- Description: On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
+- Why it matters: The .pen mobile design (hoMyO) uses a height:5 colored rectangle as the first child of each card in a vertical layout. The current implementation uses a w-[5px] left stripe in a horizontal layout.
+- Source: user
+- Primary owning slice: M010-jgngfg/S05
+- Supporting slices: none
+- Validation: S05/T01 changed all 4 card wrappers from `flex flex-row` to `flex flex-col md:flex-row` and all 4 stripe divs from `w-[5px] self-stretch` to `h-[5px] w-full md:w-[5px] md:h-auto md:self-stretch`. Grep verification: 0 old card-wrapper patterns, 0 old stripe patterns, 4 responsive stripe divs, 8 inner flex-row preserved. npm run build exits 0. Visual browser verification at 390px confirmed horizontal top stripes; at 1280px confirmed vertical left stripes preserved.
+- Notes: Validated in M010-jgngfg/S05. Full visual confirmation pending S07 screenshot retake and comparison against .pen design reference.
+
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -306,13 +306,13 @@ This file is the explicit capability and coverage contract for the project.
 | R051 | quality-attribute | validated | M010-jgngfg/S02 | none | 54 PNG screenshots captured (9 sections × 2 modes × 3 viewports). `node _design/count-screenshots.mjs` exits 0 confirming all files exist in correct folder structure with correct naming and non-zero sizes. Failure-path verified: script correctly detects missing files and exits 1. |
 | R052 | quality-attribute | validated | M010-jgngfg/S03 | none | S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern. |
 | R053 | quality-attribute | active | M010-jgngfg/S04 | none | S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison. |
-| R054 | quality-attribute | active | M010-jgngfg/S05 | none | unmapped |
+| R054 | quality-attribute | validated | M010-jgngfg/S05 | none | S05/T01 changed all 4 card wrappers from `flex flex-row` to `flex flex-col md:flex-row` and all 4 stripe divs from `w-[5px] self-stretch` to `h-[5px] w-full md:w-[5px] md:h-auto md:self-stretch`. Grep verification: 0 old card-wrapper patterns, 0 old stripe patterns, 4 responsive stripe divs, 8 inner flex-row preserved. npm run build exits 0. Visual browser verification at 390px confirmed horizontal top stripes; at 1280px confirmed vertical left stripes preserved. |
 | R055 | quality-attribute | active | M010-jgngfg/S06 | none | unmapped |
 | R056 | quality-attribute | active | M010-jgngfg/S07 | none | unmapped |
 
 ## Coverage Summary
 
-- Active requirements: 4
-- Mapped to slices: 4
-- Validated: 16 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052)
+- Active requirements: 3
+- Mapped to slices: 3
+- Validated: 17 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052, R054)
 - Unmapped active requirements: 0
