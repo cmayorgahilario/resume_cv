@@ -1,16 +1,16 @@
 [
   {
-    "id": "e9512d3f",
+    "id": "fac98c87",
     "label": "astro-dev",
     "command": "npm run dev",
     "cwd": "C:\\Users\\Makoto\\WebstormProjects\\carlosmayorga.me_astro",
-    "ownerSessionFile": "C:\\Users\\Makoto\\.gsd\\sessions\\--C--Users-Makoto-WebstormProjects-carlosmayorga.me_astro--\\2026-03-20T04-25-53-527Z_e5076382-1a0e-45b8-a8de-b992616e8cfd.jsonl",
+    "ownerSessionFile": "C:\\Users\\Makoto\\.gsd\\sessions\\--C--Users-Makoto-WebstormProjects-carlosmayorga.me_astro--\\2026-03-20T04-33-33-211Z_46dd17bd-eaf1-4734-8619-61ae1b725761.jsonl",
     "persistAcrossSessions": false,
-    "startedAt": 1773980818898,
+    "startedAt": 1773981237438,
     "processType": "server",
     "group": null,
     "readyPattern": null,
     "readyPort": 4321,
-    "pid": 44508
+    "pid": 41540
   }
 ]
