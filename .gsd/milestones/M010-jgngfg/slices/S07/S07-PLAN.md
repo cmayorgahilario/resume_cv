@@ -30,9 +30,25 @@
 - New wiring introduced in this slice: none
 - What remains before the milestone is truly usable end-to-end: nothing — this slice IS the final assembly proof
 
+## Observability / Diagnostics
+
+- **Runtime signals:** `take-screenshots.mjs` emits per-file `✓`/`✗` lines to stdout/stderr; `count-screenshots.mjs` emits `RESULT: PASS` or `RESULT: FAIL` with per-file detail on failures. Both exit non-zero on any failure.
+- **Inspection surfaces:** `_design/screenshots/dev/{light,dark}/{mobile,desktop,wide}/*.png` — 54 PNGs that can be visually inspected. File sizes >0 confirm successful capture.
+- **Failure visibility:** Screenshot capture failures log the selector and error message to stderr. The count script lists each missing/zero-byte file individually before the summary line. `npm run build` logs Astro compilation errors with file paths and line numbers.
+- **Diagnostic check:** `find _design/screenshots/dev -name "*.png" -size 0 | head -5` lists any zero-byte (failed) captures. `node _design/count-screenshots.mjs 2>&1 | grep FAIL` shows specific failing files.
+- **Redaction:** No secrets or PII in this pipeline — all outputs are safe to log.
+
+## Verification
+
+- `node _design/count-screenshots.mjs` exits 0 (54/54 passed)
+- `find _design/screenshots/dev -name "*.png" -size +0c | wc -l` returns 54
+- `npm run build` exits 0
+- Visual comparison report exists and documents 0 discrepancies across all 36 design↔dev pairs
+- `node _design/count-screenshots.mjs 2>&1 | grep -c FAIL` returns 0 (diagnostic failure-path check)
+
 ## Tasks
 
-- [ ] **T01: Retake all 54 dev screenshots from post-fix build** `est:15m`
+- [x] **T01: Retake all 54 dev screenshots from post-fix build** `est:15m`
   - Why: The existing dev screenshots were captured before S03–S06 fixes. Fresh captures are needed to reflect the corrected state.
   - Files: `_design/screenshots/dev/**/*.png`, `_design/take-screenshots.mjs`, `_design/count-screenshots.mjs`
   - Do: Run `npm run build`, serve `dist/` on port 4322 via `npx serve`, execute `node _design/take-screenshots.mjs` to capture all 54 PNGs, verify with `node _design/count-screenshots.mjs`, then kill the serve process.
