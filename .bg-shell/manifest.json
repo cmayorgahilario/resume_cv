@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "8557b5ad",
+    "label": "astro-dev",
+    "command": "npm run dev",
+    "cwd": "C:\\Users\\Makoto\\WebstormProjects\\carlosmayorga.me_astro",
+    "ownerSessionFile": "C:\\Users\\Makoto\\.gsd\\sessions\\--C--Users-Makoto-WebstormProjects-carlosmayorga.me_astro--\\2026-03-20T03-59-01-417Z_0b4d5993-51d7-4811-9455-180c1e606b0f.jsonl",
+    "persistAcrossSessions": false,
+    "startedAt": 1773979164366,
+    "processType": "server",
+    "group": null,
+    "readyPattern": null,
+    "readyPort": 4321,
+    "pid": 28976
+  }
+]
