@@ -4,17 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R052 — On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
-- Class: quality-attribute
-- Status: active
-- Description: On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
-- Why it matters: User observed that sections stretch beyond 1440px while the header stays fixed, creating inconsistency. The design specifies 1440px as the content width.
-- Source: user
-- Primary owning slice: M010-jgngfg/S03
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
-
 ### R053 — On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
 - Class: quality-attribute
 - Status: active
@@ -223,6 +212,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: 54 PNG screenshots captured (9 sections × 2 modes × 3 viewports). `node _design/count-screenshots.mjs` exits 0 confirming all files exist in correct folder structure with correct naming and non-zero sizes. Failure-path verified: script correctly detects missing files and exits 1.
 - Notes: The 1600px captures are specifically to validate the max-width constraint.
 
+### R052 — On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
+- Class: quality-attribute
+- Status: validated
+- Description: On viewports wider than 1440px, all section content must remain constrained to 1440px max width. The page should not visually stretch. Background colors may extend full viewport width.
+- Why it matters: User observed that sections stretch beyond 1440px while the header stays fixed, creating inconsistency. The design specifies 1440px as the content width.
+- Source: user
+- Primary owning slice: M010-jgngfg/S03
+- Supporting slices: none
+- Validation: S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern.
+- Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
+
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -304,7 +304,7 @@ This file is the explicit capability and coverage contract for the project.
 | R045 | quality-attribute | validated | M009-lxoyrb/S05 | none | S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0. |
 | R050 | quality-attribute | validated | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18. All non-empty (`find ... -empty` returns nothing). `find ... -size +0c | wc -l` returns 18. Named 001–009 in both desktop/ and mobile/ subdirectories. File sizes range 4.6–268 KB. Exported at 2x scale via pencil MCP. |
 | R051 | quality-attribute | validated | M010-jgngfg/S02 | none | 54 PNG screenshots captured (9 sections × 2 modes × 3 viewports). `node _design/count-screenshots.mjs` exits 0 confirming all files exist in correct folder structure with correct naming and non-zero sizes. Failure-path verified: script correctly detects missing files and exits 1. |
-| R052 | quality-attribute | active | M010-jgngfg/S03 | none | unmapped |
+| R052 | quality-attribute | validated | M010-jgngfg/S03 | none | S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern. |
 | R053 | quality-attribute | active | M010-jgngfg/S04 | none | unmapped |
 | R054 | quality-attribute | active | M010-jgngfg/S05 | none | unmapped |
 | R055 | quality-attribute | active | M010-jgngfg/S06 | none | unmapped |
@@ -312,7 +312,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 5
-- Mapped to slices: 5
-- Validated: 15 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051)
+- Active requirements: 4
+- Mapped to slices: 4
+- Validated: 16 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052)
 - Unmapped active requirements: 0
