@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -126,6 +127,7 @@ const resolvedCanonical = canonicalURL.startsWith('http') ? canonicalURL : `${SI
         sameAs: [],
       })}
   />
+  <Analytics />
 </head>
 <body>
 <slot />
