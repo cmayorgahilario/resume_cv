@@ -13,7 +13,7 @@ This file is the explicit capability and coverage contract for the project.
 - Primary owning slice: M009-lxoyrb/S01
 - Supporting slices: none
 - Validation: Hero.astro CTA `<a>` tags include `flex-1 md:flex-initial text-center`; `npm run build` exits 0; at 390×844 viewport, both buttons span nearly full container width equally.
-- Notes: Comparar contra `_design/screenshots/design/001_hero.png`.
+- Notes: S01 confirmed: Hero.astro CTA buttons now include `flex-1 md:flex-initial text-center`. Build passes. Pixel-level visual match deferred to S05.
 
 ### R041 — El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
 - Class: quality-attribute
@@ -57,7 +57,7 @@ This file is the explicit capability and coverage contract for the project.
 - Primary owning slice: M009-lxoyrb/S01
 - Supporting slices: none
 - Validation: Skills.astro Java Ecosystem description ends at "…para servicios robustos y escalables." (no extra sentence); APIs & Integration description ends at "…servicios de terceros." (no extra sentence); grep confirms "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro.
-- Notes: Comparar contra `_design/screenshots/design/003_skills.png`.
+- Notes: S01 confirmed: "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro. Java Ecosystem ends at "…para servicios robustos y escalables." APIs & Integration ends at "…servicios de terceros." Visual match deferred to S05.
 
 ### R045 — Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
 - Class: quality-attribute
