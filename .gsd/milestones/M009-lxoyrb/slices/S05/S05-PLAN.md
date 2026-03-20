@@ -21,6 +21,14 @@
 - `npm run build` exits 0
 - All 7 dev screenshot files exist: `test -f _design/screenshots/dev/001_hero.png && test -f _design/screenshots/dev/002_sobre_mi.png && test -f _design/screenshots/dev/003_skills.png && test -f _design/screenshots/dev/004_proyectos.png && test -f _design/screenshots/dev/005_experiencia.png && test -f _design/screenshots/dev/006_contacto.png && test -f _design/screenshots/dev/007_footer.png`
 - Visual side-by-side comparison of all 7 pairs confirms 0 discrepancies (agent reads each design PNG then its dev PNG and reports match/mismatch)
+- Failure-path: if `npm run build` exits non-zero, build stderr is captured and reported. If any section selector is missing from the DOM, the screenshot script exits with a non-zero code identifying the missing section.
+
+## Observability / Diagnostics
+
+- **Runtime signals:** `npm run build` exit code (0 = pass, non-zero = fail). Dev server startup log with port number. Browser screenshot capture success/failure per section.
+- **Inspection surfaces:** 7 PNG files in `_design/screenshots/dev/` — any agent can read these to visually verify current state. Design references in `_design/screenshots/design/` are the ground truth.
+- **Failure visibility:** Build errors appear in `npm run build` stderr. Missing screenshots are detected by `test -f` checks. Visual discrepancies are documented as findings in the task summary with section name, nature, and severity.
+- **Failure-path verification:** If `npm run build` exits non-zero, the build error output is captured and reported. If a section element is missing from the DOM (e.g., `#inicio` not found), the screenshot step fails with a selector-not-found error that identifies the missing section.
 
 ## Integration Closure
 
@@ -30,7 +38,7 @@
 
 ## Tasks
 
-- [ ] **T01: Retake 7 mobile screenshots and visually verify against design** `est:20m`
+- [x] **T01: Retake 7 mobile screenshots and visually verify against design** `est:20m`
   - Why: This is the milestone's final gate — all S01–S04 fixes must be visually confirmed by comparing retaken dev screenshots against the design originals. Validates R045.
   - Files: `_design/screenshots/dev/001_hero.png`, `_design/screenshots/dev/002_sobre_mi.png`, `_design/screenshots/dev/003_skills.png`, `_design/screenshots/dev/004_proyectos.png`, `_design/screenshots/dev/005_experiencia.png`, `_design/screenshots/dev/006_contacto.png`, `_design/screenshots/dev/007_footer.png`
   - Do: (1) Confirm `npm run build` exits 0. (2) Start dev server via `bg_shell` with `ready_port:4321`. (3) Navigate browser to localhost, set viewport to 390×844 via `browser_set_viewport` with custom width/height. (4) Hide sticky header via `browser_evaluate`: `document.querySelector('header').style.display = 'none'`. (5) Screenshot each of the 7 sections by CSS selector (`#inicio`, `#sobre-mi`, `#habilidades`, `#proyectos`, `#experiencia`, `#contacto`, `footer`) — save each to the matching `_design/screenshots/dev/00N_*.png` path. (6) Read each design PNG from `_design/screenshots/design/` and its dev PNG pair, visually compare side-by-side. (7) Set viewport to 1440×900 for desktop sanity check — quick visual scan for regressions. (8) Report results: 0 discrepancies = pass, or list any findings. **Skills:** Load `agent-browser` skill for browser automation patterns. **Gotchas from KNOWLEDGE.md:** Check actual dev server port from output (may auto-increment); wait for `network_idle` after navigation before `browser_evaluate` to avoid HMR context destruction.

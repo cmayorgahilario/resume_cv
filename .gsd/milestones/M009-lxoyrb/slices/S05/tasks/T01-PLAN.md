@@ -76,3 +76,9 @@ This is the milestone's final visual QA gate. Start the Astro dev server, take r
 - `_design/screenshots/dev/005_experiencia.png` — Retaken Experiencia mobile screenshot
 - `_design/screenshots/dev/006_contacto.png` — Retaken Contacto mobile screenshot
 - `_design/screenshots/dev/007_footer.png` — Retaken Footer mobile screenshot
+
+## Observability Impact
+
+- **Signals changed:** 7 PNG files in `_design/screenshots/dev/` are updated to reflect current build output. These serve as the visual baseline for future QA.
+- **Inspection surface:** Any future agent can `Read` these PNGs to see the current mobile visual state of each section. Design references in `_design/screenshots/design/` remain the ground truth.
+- **Failure state:** If screenshots are missing or the script fails, the `_design/take-screenshots.mjs` script exits non-zero with the failing selector name. Build failures are captured in `npm run build` stderr.
