@@ -21,7 +21,7 @@
 
 ## Tasks
 
-- [ ] **T01: Add responsive desktop classes to Footer.astro** `est:10m`
+- [x] **T01: Add responsive desktop classes to Footer.astro** `est:10m`
   - Why: The footer currently stacks brand and nav columns vertically on all viewports. The `.pen` design shows a horizontal `space-between` layout on desktop. Three Tailwind class additions on three lines fix this.
   - Files: `src/components/sections/Footer.astro`
   - Do: (1) Add `md:flex-row md:justify-between md:items-start` to the `footerTop` div (line 9). (2) Add `md:w-[300px]` to the brand column div (line 12). (3) Add `md:gap-12` to the nav columns wrapper div (line 32, alongside existing `gap-8`). All changes are `md:` prefixed to preserve mobile vertical layout. Do NOT modify the outer `<footer>` or inner `max-w-[1440px]` wrapper — preserve the S03 canonical layout pattern.
@@ -31,3 +31,10 @@
 ## Files Likely Touched
 
 - `src/components/sections/Footer.astro`
+
+## Observability / Diagnostics
+
+- **Inspection surface:** `grep -n "md:" src/components/sections/Footer.astro` lists all responsive desktop classes in the footer — count should be ≥5 (3 new + 2 existing from S03).
+- **Failure visibility:** If desktop layout breaks, the footer will visually stack vertically at ≥768px viewport; inspect browser DevTools for missing `md:flex-row` on the footerTop div.
+- **Build-time check:** `npm run build` catches any Astro template syntax errors introduced by class changes.
+- **No runtime signals:** This is a static CSS-only change with no JS, no API calls, no error states at runtime.
