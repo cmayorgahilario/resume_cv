@@ -1,30 +1,133 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+  locale?: string;
+  noindex?: boolean;
+}
+
+const SITE_URL = 'https://carlosmayorga.me';
+const DEFAULT_TITLE = 'Software Engineering Lead';
+const DEFAULT_DESCRIPTION =
+    'Tech Lead & Software Engineer con más de 10 años de experiencia en Java, Spring Boot, .NET y arquitecturas enterprise en Lima, Perú.';
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
+
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  image = DEFAULT_IMAGE,
+  canonicalURL = SITE_URL,
+  type = 'website',
+  locale = 'es_PE',
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title === DEFAULT_TITLE ? title : `${title} | Carlos Mayorga`;
+const resolvedImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+const resolvedCanonical = canonicalURL.startsWith('http') ? canonicalURL : `${SITE_URL}${canonicalURL}`;
 ---
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <!-- FOUC prevention: apply dark class before first paint -->
-    <script is:inline>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" sizes="48x48" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
+<head>
+  <!-- FOUC prevention: apply dark class before first paint -->
+  <script is:inline>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
 
-    <!-- Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- ─── Base ──────────────────────────────────────────────── -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Carlos Mayorga — Ingeniero de Software</title>
-    <meta name="description" content="Portfolio profesional de Carlos Mayorga, Ingeniero de Software Senior especializado en Java y tecnologías enterprise." />
-  </head>
-  <body>
-    <slot />
-  </body>
+  <!-- ─── SEO ───────────────────────────────────────────────── -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={resolvedCanonical} />
+  <meta name="generator" content={Astro.generator} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+
+  <!-- ─── Keywords (secondary signal) ───────────────────────── -->
+  <meta name="keywords" content="Carlos Mayorga, Tech Lead, Software Engineer, Java, Spring Boot, .NET, arquitectura de software, microservicios, Lima, Perú, portfolio, desarrollador senior" />
+  <meta name="author" content="Carlos Alberto Mayorga Hilario" />
+
+  <!-- ─── Open Graph ────────────────────────────────────────── -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={resolvedCanonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={resolvedImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={`${fullTitle} — portfolio`} />
+  <meta property="og:locale" content={locale} />
+  <meta property="og:site_name" content="Carlos Mayorga" />
+
+  <!-- ─── Twitter Card ──────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={resolvedImage} />
+  <meta name="twitter:image:alt" content={`${fullTitle} — portfolio`} />
+
+  <!-- ─── Favicons ──────────────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ─── Theme Color ───────────────────────────────────────── -->
+  <meta name="theme-color" content="#4338CA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- ─── Fonts ─────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ─── Structured Data (JSON-LD) ─────────────────────────── -->
+  <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Carlos Alberto Mayorga Hilario',
+        alternateName: 'Carlos Mayorga',
+        url: SITE_URL,
+        image: `${SITE_URL}/profile.webp`,
+        jobTitle: 'Tech Lead & Software Engineer',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Real Plaza',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Lima',
+          addressCountry: 'PE',
+        },
+        knowsAbout: [
+          'Java',
+          'Spring Boot',
+          'C#',
+          '.NET',
+          'Microservices',
+          'Clean Architecture',
+          'Domain-Driven Design',
+          'Azure',
+          'Docker',
+          'Software Architecture',
+        ],
+        sameAs: [],
+      })}
+  />
+</head>
+<body>
+<slot />
+</body>
 </html>
