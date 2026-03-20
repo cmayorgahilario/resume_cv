@@ -29,7 +29,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const fullTitle = title === DEFAULT_TITLE ? title : `${title} | Carlos Mayorga`;
+const fullTitle = `${title} | Carlos Mayorga`;
 const resolvedImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 const resolvedCanonical = canonicalURL.startsWith('http') ? canonicalURL : `${SITE_URL}${canonicalURL}`;
 ---
