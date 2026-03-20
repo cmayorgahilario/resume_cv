@@ -23,8 +23,8 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S02
 - Supporting slices: none
-- Validation: unmapped
-- Notes: Comparar contra `_design/screenshots/design/004_proyectos.png`. Fuente de verdad final: los screenshots, no el MCP.
+- Validation: Source grep: 6 negative checks (old phrases absent) + 6 positive checks (design phrases present) all pass. npm run build exits 0. Full visual validation pending S05 screenshot comparison.
+- Notes: S02 applied all 6 text corrections (subtitle + 5 card descriptions). Source-level grep verification confirms all design-verbatim phrases present and all old phrases removed. Visual confirmation deferred to S05.
 
 ### R042 — En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
 - Class: quality-attribute
@@ -220,7 +220,7 @@ This file is the explicit capability and coverage contract for the project.
 | R030 | anti-feature | out-of-scope | none | none | n/a |
 | R031 | anti-feature | out-of-scope | none | none | n/a |
 | R040 | quality-attribute | active | M009-lxoyrb/S01 | none | Hero.astro CTA `<a>` tags include `flex-1 md:flex-initial text-center`; `npm run build` exits 0; at 390×844 viewport, both buttons span nearly full container width equally. |
-| R041 | quality-attribute | active | M009-lxoyrb/S02 | none | unmapped |
+| R041 | quality-attribute | active | M009-lxoyrb/S02 | none | Source grep: 6 negative checks (old phrases absent) + 6 positive checks (design phrases present) all pass. npm run build exits 0. Full visual validation pending S05 screenshot comparison. |
 | R042 | quality-attribute | active | M009-lxoyrb/S03 | none | unmapped |
 | R043 | quality-attribute | active | M009-lxoyrb/S04 | none | unmapped |
 | R044 | quality-attribute | active | M009-lxoyrb/S01 | none | Skills.astro Java Ecosystem description ends at "…para servicios robustos y escalables." (no extra sentence); APIs & Integration description ends at "…servicios de terceros." (no extra sentence); grep confirms "Arquitectura de microservicios" and "Implementación de contratos" absent from Skills.astro. |
