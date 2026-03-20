@@ -20,9 +20,16 @@
 - `grep -c "border-b" src/components/sections/Experiencia.astro` returns 0 (no CSS borders on items)
 - `grep -c "h-px w-full bg-\[var(--border-default)\] md:hidden" src/components/sections/Experiencia.astro` returns 3 (divider divs)
 
+## Observability / Diagnostics
+
+- **Build-time:** `npm run build` catches any template syntax errors introduced by class/div changes.
+- **Inspection surface:** `grep -c "border-b" src/components/sections/Experiencia.astro` should always return 0 — any non-zero result indicates a regression to CSS border approach.
+- **Failure visibility:** If mobile spacing regresses, inspect the built HTML at `dist/index.html` and search for `h-px w-full` to confirm divider divs are rendered; search for `gap-6 md:gap-0` to confirm container gap. Browser DevTools at 390px viewport width reveals computed padding-bottom values on timeline items.
+- **Diagnostic grep for divider pattern:** `grep -n "h-px w-full bg-\[var(--border-default)\] md:hidden" src/components/sections/Experiencia.astro` shows line numbers of all divider elements for quick structural verification.
+
 ## Tasks
 
-- [ ] **T01: Fix mobile spacing and dividers in Experiencia timeline** `est:20m`
+- [x] **T01: Fix mobile spacing and dividers in Experiencia timeline** `est:20m`
   - Why: The .pen design specifies gap:24 between timeline items, padding-bottom:24 per item, and a 1px divider child element inside each item — current code uses no gap, pb-8 (32px), and CSS border-b instead.
   - Files: `src/components/sections/Experiencia.astro`
   - Do: (1) Add `gap-6 md:gap-0` to the timeline container `<div class="flex flex-col">`. (2) On items 1–3, change `pb-8` to `pb-6`. (3) On items 1–3, remove `border-b border-[var(--border-default)] md:border-b-0` and add a child `<div class="h-px w-full bg-[var(--border-default)] md:hidden"></div>` as the last element inside each item's content wrapper (the `flex-1` div). (4) Item 4 stays unchanged. (5) Desktop layout must remain visually identical — divider divs are `md:hidden`, gap is `md:gap-0`.
