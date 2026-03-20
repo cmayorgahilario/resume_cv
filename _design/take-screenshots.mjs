@@ -1,78 +1,98 @@
 import { chromium } from 'playwright';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(__dirname, 'screenshots', 'dev');
 
+// --- Section map: 9 entries, order matches site layout ---
 const sections = [
-  { selector: '#inicio', file: '001_hero.png' },
-  { selector: '#sobre-mi', file: '002_sobre_mi.png' },
-  { selector: '#habilidades', file: '003_skills.png' },
-  { selector: '#proyectos', file: '004_proyectos.png' },
-  { selector: '#experiencia', file: '005_experiencia.png' },
-  { selector: '#contacto', file: '006_contacto.png' },
-  { selector: 'footer', file: '007_footer.png' },
+  { selector: 'header', file: '001_header.png' },
+  { selector: '#inicio', file: '002_hero.png' },
+  { selector: '#sobre-mi', file: '003_sobre_mi.png' },
+  { selector: '#habilidades', file: '004_skills.png' },
+  { selector: '#proyectos', file: '005_proyectos.png' },
+  { selector: '#experiencia', file: '006_experience.png' },
+  { selector: '#educacion', file: '007_education.png' },
+  { selector: '#contacto', file: '008_contact.png' },
+  { selector: 'footer', file: '009_footer.png' },
 ];
 
-async function hideHeader(page) {
-  await page.evaluate(() => {
-    const header = document.querySelector('header');
-    if (header) header.style.display = 'none';
-    // Also inject a style tag so it persists through HMR
-    if (!document.getElementById('hide-header-style')) {
-      const style = document.createElement('style');
-      style.id = 'hide-header-style';
-      style.textContent = 'header { display: none !important; }';
-      document.head.appendChild(style);
-    }
-  });
-}
+// --- Viewport configs ---
+const viewports = {
+  mobile: { width: 390, height: 844 },
+  desktop: { width: 1440, height: 900 },
+  wide: { width: 1600, height: 900 },
+};
+
+// --- Mode configs ---
+const modes = ['light', 'dark'];
 
 async function main() {
   const browser = await chromium.launch();
-  const context = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    deviceScaleFactor: 2,
-  });
-  const page = await context.newPage();
+  let totalCaptured = 0;
+  let totalFailed = 0;
 
-  // Navigate to the built static output instead of dev server to avoid HMR
-  // But we need the dev server for live content — just wait longer for HMR to settle
-  // Use the built static output (port 4322) to avoid HMR context destruction
-  await page.goto('http://localhost:4322', { waitUntil: 'networkidle', timeout: 30000 });
-  await page.waitForTimeout(1000);
-  
-  await hideHeader(page);
-  await page.waitForTimeout(500);
+  for (const mode of modes) {
+    for (const [viewportName, viewport] of Object.entries(viewports)) {
+      // Fresh browser context per viewport (viewport is immutable after creation)
+      const context = await browser.newContext({
+        viewport,
+        deviceScaleFactor: 2,
+      });
+      const page = await context.newPage();
 
-  for (const { selector, file } of sections) {
-    // Verify page is still valid
-    try {
-      await page.evaluate(() => document.readyState);
-    } catch {
-      console.log('Context destroyed, re-navigating...');
-      await page.goto('http://localhost:4322', { waitUntil: 'networkidle', timeout: 30000 });
-      await page.waitForTimeout(1000);
-      await hideHeader(page);
-      await page.waitForTimeout(500);
+      await page.goto('http://localhost:4322', {
+        waitUntil: 'networkidle',
+        timeout: 30000,
+      });
+
+      // Toggle dark mode if needed
+      if (mode === 'dark') {
+        await page.evaluate(() =>
+          document.documentElement.classList.add('dark')
+        );
+        await page.waitForTimeout(300); // Let CSS transitions settle
+      }
+
+      // Capture each section
+      for (const { selector, file } of sections) {
+        const dir = path.join(outDir, mode, viewportName);
+        fs.mkdirSync(dir, { recursive: true });
+        const outPath = path.join(dir, file);
+
+        try {
+          const el = await page.waitForSelector(selector, { timeout: 10000 });
+          if (!el) {
+            console.error(`✗ ${mode}/${viewportName}/${file} — selector not found: ${selector}`);
+            totalFailed++;
+            continue;
+          }
+          await el.screenshot({ path: outPath });
+          console.log(`✓ ${mode}/${viewportName}/${file}`);
+          totalCaptured++;
+        } catch (err) {
+          console.error(`✗ ${mode}/${viewportName}/${file} — ${err.message}`);
+          totalFailed++;
+        }
+      }
+
+      await context.close();
     }
-
-    const el = await page.waitForSelector(selector, { timeout: 10000 });
-    if (!el) {
-      console.error(`Element not found: ${selector}`);
-      continue;
-    }
-    const outPath = path.join(outDir, file);
-    await el.screenshot({ path: outPath });
-    console.log(`✓ ${file} (${selector})`);
   }
 
   await browser.close();
-  console.log('\nAll screenshots saved to:', outDir);
+
+  console.log(`\nDone: ${totalCaptured} captured, ${totalFailed} failed`);
+  console.log('Output:', outDir);
+
+  if (totalFailed > 0) {
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {
-  console.error(err);
+  console.error('Fatal error:', err);
   process.exit(1);
 });

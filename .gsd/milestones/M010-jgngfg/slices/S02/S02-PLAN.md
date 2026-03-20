@@ -18,10 +18,11 @@
 
 - `node _design/count-screenshots.mjs` — verification script that checks: (1) 54 PNG files exist, (2) correct folder structure with 9 files each, (3) all files > 0 bytes, (4) correct filenames 001–009
 - `npm run build` exits 0
+- `node _design/count-screenshots.mjs 2>&1` on incomplete/missing output — exits 1 with diagnostic listing of which directories/files are missing or zero-byte (failure-path check)
 
 ## Tasks
 
-- [ ] **T01: Rewrite take-screenshots.mjs for multi-mode multi-viewport capture** `est:30m`
+- [x] **T01: Rewrite take-screenshots.mjs for multi-mode multi-viewport capture** `est:30m`
   - Why: The current script only captures 7 sections at 390px light-only with header hidden and wrong numbering. Need full 9-section × 2-mode × 3-viewport support with correct naming.
   - Files: `_design/take-screenshots.mjs`, `_design/count-screenshots.mjs`
   - Do: Rewrite `take-screenshots.mjs` with: (1) 9-section map matching design reference naming (001_header through 009_footer), (2) 3 viewport configs (mobile 390×844, desktop 1440×900, wide 1600×900), (3) outer loop over modes, inner over viewports, innermost over sections, (4) fresh browser context per viewport, (5) dark mode via `page.evaluate(() => document.documentElement.classList.add('dark'))` after navigation, (6) `mkdir -p` for output dirs, (7) remove `hideHeader()`. Also write `count-screenshots.mjs` verification script that validates 54 files exist, correct names, non-zero size.
@@ -34,6 +35,14 @@
   - Do: (1) Run `npm run build` to generate `dist/`. (2) Start static server: `npx serve dist -l 4322` in background. (3) Run `node _design/take-screenshots.mjs`. (4) Stop server. (5) Run `node _design/count-screenshots.mjs` to verify output. If any screenshots fail, debug and re-run.
   - Verify: `node _design/count-screenshots.mjs` exits 0 (54 PNGs, correct structure, all non-zero)
   - Done when: All 54 PNG files exist in correct folders with correct names and non-zero file sizes.
+
+## Observability / Diagnostics
+
+- **Progress logging:** `take-screenshots.mjs` prints `✓ {mode}/{viewportName}/{file}` for each successful capture, enabling progress tracking during long runs.
+- **Verification script:** `count-screenshots.mjs` prints per-directory pass/fail counts, expected vs actual filenames, and zero-byte file detection. Exit code 0 = all pass, 1 = any failure.
+- **Failure visibility:** If a section selector is not found, the script logs the missing selector and continues (no silent skip). On crash, the partial output directory reveals how far the run progressed.
+- **Inspection surface:** After a run, `ls -la _design/screenshots/dev/{light,dark}/{mobile,desktop,wide}/` shows which files were produced and their sizes. `node _design/count-screenshots.mjs` gives a structured summary.
+- **Redaction:** No secrets or credentials are involved in screenshot capture.
 
 ## Files Likely Touched
 

@@ -59,6 +59,13 @@ Rewrite `_design/take-screenshots.mjs` to capture all 9 sections across 2 modes 
 - `grep -c "selector:" _design/take-screenshots.mjs` returns 9 (all sections mapped)
 - `grep -q "hideHeader" _design/take-screenshots.mjs` should FAIL (header hiding removed)
 
+## Observability Impact
+
+- **New signal:** `take-screenshots.mjs` emits `✓ {mode}/{viewportName}/{file}` per capture and a final summary line (`Done: N captured, M failed`). Non-zero exit on any failure.
+- **New signal:** `count-screenshots.mjs` emits per-file PASS/FAIL lines and exits 1 on any missing/zero-byte file, enabling CI-style pass/fail gating.
+- **Inspection:** After a run, `ls _design/screenshots/dev/{light,dark}/{mobile,desktop,wide}/` shows partial progress. `node _design/count-screenshots.mjs` gives a structured summary.
+- **Failure state:** Partial output directories reveal exactly which mode/viewport/section failed. Error messages include the selector that was not found.
+
 ## Inputs
 
 - `_design/take-screenshots.mjs` — existing script to rewrite (current: 7 sections, single mode/viewport)
