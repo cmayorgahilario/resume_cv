@@ -2,30 +2,6 @@
 
 This file is the explicit capability and coverage contract for the project.
 
-## Active
-
-### R053 — On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
-- Class: quality-attribute
-- Status: active
-- Description: On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
-- Why it matters: Current implementation stacks brand and nav columns vertically, which doesn't match the .pen design's horizontal layout.
-- Source: user
-- Primary owning slice: M010-jgngfg/S04
-- Supporting slices: none
-- Validation: S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison.
-- Notes: Structural classes verified present. Full visual validation pending S07 screenshot retake and comparison against .pen design reference.
-
-### R056 — All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
-- Class: quality-attribute
-- Status: active
-- Description: All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
-- Why it matters: This is the final proof that the implementation matches the design across all combinations.
-- Source: user
-- Primary owning slice: M010-jgngfg/S07
-- Supporting slices: none
-- Validation: unmapped
-- Notes: 1600px screenshots are for max-width validation only — no design reference exists at 1600px.
-
 ## Validated
 
 ### R001 — El sitio debe renderizar la homepage completa en light mode, fiel al diseño `.pen`: Header, Hero, Sobre Mí, Skills, Proyectos, Experiencia, Educación, Contacto, Footer.
@@ -201,6 +177,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern.
 - Notes: Current implementation has max-w-[1440px] on inner divs but padding on outer sections. At >1440px the whitespace distribution is uneven.
 
+### R053 — On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
+- Class: quality-attribute
+- Status: validated
+- Description: On desktop, the footer should display brand info (logo, name, description) on the left and navigation + social columns on the right in a horizontal row, matching the .pen design's `justify-content: space-between` layout.
+- Why it matters: Current implementation stacks brand and nav columns vertically, which doesn't match the .pen design's horizontal layout.
+- Source: user
+- Primary owning slice: M010-jgngfg/S04
+- Supporting slices: none
+- Validation: S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. S07 visual comparison of all footer screenshots (light/dark × mobile/desktop/wide) confirms brand-left/nav-right horizontal layout on desktop matching .pen design. 0 discrepancies.
+- Notes: Structural fix in S04, visual confirmation in S07. All 6 footer screenshots (2 modes × 3 viewports) verified.
+
 ### R054 — On mobile, the Educación section cards (degree panel + 3 certification rows) should have a colored horizontal stripe on the top of the card, not a vertical stripe on the left side. Indigo stripe for degree and CAL I, amber stripe for CSM and UX/UI.
 - Class: quality-attribute
 - Status: validated
@@ -222,6 +209,17 @@ This file is the explicit capability and coverage contract for the project.
 - Supporting slices: none
 - Validation: Verified: gap-6 md:gap-0 on container (1×), pb-6 on items 1-3 (3×), 0× border-b, 3× child divider divs h-px w-full bg-[var(--border-default)] md:hidden. npm run build exits 0. Item 4 confirmed unchanged.
 - Notes: Completed in S06/T01. Dividers are child div elements inside content wrappers, not CSS border-b properties, matching the .pen spec.
+
+### R056 — All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
+- Class: quality-attribute
+- Status: validated
+- Description: All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
+- Why it matters: This is the final proof that the implementation matches the design across all combinations.
+- Source: user
+- Primary owning slice: M010-jgngfg/S07
+- Supporting slices: none
+- Validation: S07 retook all 54 dev screenshots (9 sections × 2 modes × 3 viewports) from a post-fix build incorporating S03–S06 CSS fixes, then visually compared all 36 design↔dev pairs (light/dark × mobile/desktop). 36/36 pairs PASS with 0 discrepancies. 18 wide screenshots (1600px) confirm max-width compliance — content within 1440px, backgrounds full-width. `node _design/count-screenshots.mjs` exits 0 (54/54 passed). `npm run build` exits 0.
+- Notes: Validated by M010-jgngfg/S07 visual comparison. Photo placeholder in design vs real photo in dev is expected. Design light/mobile 002_header.png = dev 002_hero.png (legacy naming, same section).
 
 ## Deferred
 
@@ -305,14 +303,14 @@ This file is the explicit capability and coverage contract for the project.
 | R050 | quality-attribute | validated | M010-jgngfg/S01 | none | 18 dark design reference PNGs exist: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18. All non-empty (`find ... -empty` returns nothing). `find ... -size +0c | wc -l` returns 18. Named 001–009 in both desktop/ and mobile/ subdirectories. File sizes range 4.6–268 KB. Exported at 2x scale via pencil MCP. |
 | R051 | quality-attribute | validated | M010-jgngfg/S02 | none | 54 PNG screenshots captured (9 sections × 2 modes × 3 viewports). `node _design/count-screenshots.mjs` exits 0 confirming all files exist in correct folder structure with correct naming and non-zero sizes. Failure-path verified: script correctly detects missing files and exits 1. |
 | R052 | quality-attribute | validated | M010-jgngfg/S03 | none | S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern. |
-| R053 | quality-attribute | active | M010-jgngfg/S04 | none | S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison. |
+| R053 | quality-attribute | validated | M010-jgngfg/S04 | none | S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. S07 visual comparison of all footer screenshots (light/dark × mobile/desktop/wide) confirms brand-left/nav-right horizontal layout on desktop matching .pen design. 0 discrepancies. |
 | R054 | quality-attribute | validated | M010-jgngfg/S05 | none | S05/T01 changed all 4 card wrappers from `flex flex-row` to `flex flex-col md:flex-row` and all 4 stripe divs from `w-[5px] self-stretch` to `h-[5px] w-full md:w-[5px] md:h-auto md:self-stretch`. Grep verification: 0 old card-wrapper patterns, 0 old stripe patterns, 4 responsive stripe divs, 8 inner flex-row preserved. npm run build exits 0. Visual browser verification at 390px confirmed horizontal top stripes; at 1280px confirmed vertical left stripes preserved. |
 | R055 | quality-attribute | validated | M010-jgngfg/S06 | none | Verified: gap-6 md:gap-0 on container (1×), pb-6 on items 1-3 (3×), 0× border-b, 3× child divider divs h-px w-full bg-[var(--border-default)] md:hidden. npm run build exits 0. Item 4 confirmed unchanged. |
-| R056 | quality-attribute | active | M010-jgngfg/S07 | none | unmapped |
+| R056 | quality-attribute | validated | M010-jgngfg/S07 | none | S07 retook all 54 dev screenshots (9 sections × 2 modes × 3 viewports) from a post-fix build incorporating S03–S06 CSS fixes, then visually compared all 36 design↔dev pairs (light/dark × mobile/desktop). 36/36 pairs PASS with 0 discrepancies. 18 wide screenshots (1600px) confirm max-width compliance — content within 1440px, backgrounds full-width. `node _design/count-screenshots.mjs` exits 0 (54/54 passed). `npm run build` exits 0. |
 
 ## Coverage Summary
 
-- Active requirements: 2
-- Mapped to slices: 2
-- Validated: 18 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052, R054, R055)
+- Active requirements: 0
+- Mapped to slices: 0
+- Validated: 20 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052, R053, R054, R055, R056)
 - Unmapped active requirements: 0
