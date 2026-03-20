@@ -19,12 +19,25 @@
 
 ## Tasks
 
-- [ ] **T01: Export and rename dark design reference PNGs from .pen file** `est:15m`
+- [x] **T01: Export and rename dark design reference PNGs from .pen file** `est:15m`
   - Why: This is the entire slice — R050 requires dark design reference screenshots for all 9 sections in both desktop and mobile viewports. These PNGs serve as the comparison baseline for S07 visual verification.
   - Files: `_design/screenshots/design/dark/desktop/*.png`, `_design/screenshots/design/dark/mobile/*.png`
   - Do: Use MCP `export_nodes` to export 9 dark desktop sections (node IDs: `5k2YD`, `Dqyq3`, `mhbv8`, `UY9ax`, `2zSQY`, `qC3bc`, `HKXnu`, `G0U1V`, `E65Tr`) into `_design/screenshots/design/dark/desktop/`, then rename each `{nodeId}.png` → `{NNN}_{section}.png` per the node ID map. Repeat for 9 dark mobile sections (node IDs: `X9UaP`, `9BssS`, `hzWyd`, `XjPhO`, `637YK`, `V4F95`, `wUBYZ`, `6mo0U`, `rcjVM`) into `_design/screenshots/design/dark/mobile/`. Use `scale: 2` and `format: "png"`. If relative `outputDir` fails, use the absolute path `C:/Users/Makoto/WebstormProjects/carlosmayorga.me_astro/_design/screenshots/design/dark/{desktop|mobile}`.
   - Verify: `find _design/screenshots/design/dark -name "*.png" | wc -l` returns 18, and `find _design/screenshots/design/dark -name "*.png" -empty` returns nothing
   - Done when: All 18 PNGs exist with correct names and non-zero sizes
+
+## Observability / Diagnostics
+
+- **Export success signal:** `mcp_call` to `pencil.export_nodes` returns a success response with exported file paths; failure returns an error message with the specific node ID that failed.
+- **File integrity check:** `find _design/screenshots/design/dark -name "*.png" -empty` detects zero-byte exports (corrupt or failed renders).
+- **Naming audit:** `find _design/screenshots/design/dark -name "*.png" | sort` reveals any leftover node-ID-named files that weren't renamed, or missing semantic names.
+- **Failure visibility:** If the `.pen` file is missing or the pencil MCP server is unavailable, the `mcp_call` will return an explicit error; no silent failures.
+- **Diagnostic verification:** `find _design/screenshots/design/dark -name "*.png" -size +0c | wc -l` confirms all exported files have content (non-zero size check as positive assertion).
+
+## Verification
+
+(existing verification checks plus:)
+- `find _design/screenshots/design/dark -name "*.png" -size +0c | wc -l` returns `18` (positive size assertion, catches partial/corrupt exports)
 
 ## Files Likely Touched
 

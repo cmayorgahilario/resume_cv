@@ -71,6 +71,12 @@ This task uses the `pencil` MCP server — call `mcp_call(server="pencil", tool=
 - `ls _design/screenshots/design/dark/desktop/` lists exactly 9 files: `001_header.png 002_hero.png 003_sobre_mi.png 004_skills.png 005_proyectos.png 006_experience.png 007_education.png 008_contact.png 009_footer.png`
 - `ls _design/screenshots/design/dark/mobile/` lists the same 9 filenames
 
+## Observability Impact
+
+- **New inspection surface:** 18 PNG files in `_design/screenshots/design/dark/{desktop,mobile}/` — future agents can verify dark mode design baseline exists by checking file count and sizes.
+- **Failure signals:** `mcp_call` errors from the pencil server surface as explicit error responses (node not found, file path invalid, server unavailable). Zero-byte files indicate render failures.
+- **Diagnostics for downstream:** S07 visual verification depends on these files existing; `find _design/screenshots/design/dark -name "*.png" -size +0c | wc -l` returning 18 is the readiness signal.
+
 ## Inputs
 
 - `_design/carlos_mayorga_cv.pen` — Source design file containing dark desktop frame `j1mfs` and dark mobile frame `euVyc` with the 18 section nodes to export
