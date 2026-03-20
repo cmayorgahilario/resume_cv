@@ -86,7 +86,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S01
 - Supporting slices: none
-- Validation: S05 visual comparison of retaken dev screenshot (001_hero.png) at 390×844 @2x against design screenshot confirms CTA buttons match design proportions — both buttons span nearly full container width equally. Build passes.
+- Validation: Both Hero CTA buttons have flex-1 md:flex-initial text-center (grep count = 2). S05 + S06 visual comparison of retaken 001_hero.png at 390×844 @2x confirms equal-width buttons matching design proportions. Build passes.
 - Notes: S01 applied flex-1 md:flex-initial text-center. S05 confirmed visual match via screenshot comparison.
 
 ### R041 — El subtítulo de la sección Proyectos y las descripciones de las 6 tarjetas deben coincidir verbatim con el texto visible en el screenshot del diseño `.pen`.
@@ -97,7 +97,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S02
 - Supporting slices: none
-- Validation: S05 visual comparison of retaken dev screenshot (004_proyectos.png) at 390×844 @2x against design screenshot confirms subtitle and all 6 card descriptions match design verbatim. Source grep + visual confirmation both pass.
+- Validation: S02 replaced subtitle and 5 card descriptions with design-verbatim text (Card 1 already correct). Negative grep confirms all 6 old phrases absent from source. S05 visual comparison of 004_proyectos.png at 390×844 @2x confirms verbatim match.
 - Notes: S02 corrected subtitle + 5 card descriptions. S05 confirmed visual match via screenshot comparison.
 
 ### R042 — En mobile, la fecha y empresa de cada item de experiencia deben aparecer en la misma línea (ej. `2022 — 2025 · Real Plaza`), no apilados verticalmente.
@@ -108,7 +108,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S03
 - Supporting slices: none
-- Validation: S05 visual comparison of retaken dev screenshot (005_experiencia.png) at 390×844 @2x against design screenshot confirms all 4 experience items show inline date+company format on mobile. Build passes.
+- Validation: S03 restructured all 4 experience items to inline date+company with flex items-center gap-2 (grep count = 4). S05 visual comparison of 005_experiencia.png at 390×844 @2x confirms inline layout matching design.
 - Notes: S03 restructured inline date+company. S05 confirmed visual match via screenshot comparison.
 
 ### R043 — La sección Contacto en mobile debe tener el header (label + título + subtítulo) alineado a la izquierda, y el formulario e info card deben ocupar el ancho completo de la pantalla, no estar centrados y estrechos.
@@ -119,7 +119,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S04
 - Supporting slices: none
-- Validation: S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards.
+- Validation: S04 applied md:items-center md:text-center responsive classes. Grep confirms bare centering classes removed. S05 visual comparison of 006_contacto.png at 390×844 @2x confirms left-aligned header and full-width form/info cards on mobile.
 - Notes: Comparar contra `_design/screenshots/design/006_contacto.png`.
 
 ### R044 — El contenido de texto de la sección Skills (Habilidades Técnicas) debe coincidir con el screenshot del diseño.
@@ -130,7 +130,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: user
 - Primary owning slice: M009-lxoyrb/S01
 - Supporting slices: none
-- Validation: S05 visual comparison of retaken dev screenshot (003_skills.png) at 390×844 @2x against design screenshot confirms all Skills section text content matches design. No extra sentences, no rewritten descriptions.
+- Validation: S01 removed extra sentences from Java Ecosystem and APIs & Integration cards (grep confirms 0 matches for removed phrases). S05 visual comparison of 003_skills.png at 390×844 @2x confirms all text matches design.
 - Notes: S01 verified text matches design. S05 confirmed visual match via screenshot comparison.
 
 ### R045 — Las 7 secciones (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) deben pasar una comparación visual final entre screenshots retomados del dev y los screenshots del diseño.
@@ -217,11 +217,11 @@ This file is the explicit capability and coverage contract for the project.
 | R021 | integration | deferred | none | none | unmapped |
 | R030 | anti-feature | out-of-scope | none | none | n/a |
 | R031 | anti-feature | out-of-scope | none | none | n/a |
-| R040 | quality-attribute | validated | M009-lxoyrb/S01 | none | S05 visual comparison of retaken dev screenshot (001_hero.png) at 390×844 @2x against design screenshot confirms CTA buttons match design proportions — both buttons span nearly full container width equally. Build passes. |
-| R041 | quality-attribute | validated | M009-lxoyrb/S02 | none | S05 visual comparison of retaken dev screenshot (004_proyectos.png) at 390×844 @2x against design screenshot confirms subtitle and all 6 card descriptions match design verbatim. Source grep + visual confirmation both pass. |
-| R042 | quality-attribute | validated | M009-lxoyrb/S03 | none | S05 visual comparison of retaken dev screenshot (005_experiencia.png) at 390×844 @2x against design screenshot confirms all 4 experience items show inline date+company format on mobile. Build passes. |
-| R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04/T01 applied responsive Tailwind classes: header uses md:items-center md:text-center (left-aligned on mobile, centered on desktop), container uses md:items-start (children stretch full-width on mobile), form column has w-full flex-1. Build passes, grep confirms all patterns present, visual check at 390×844 confirms left-aligned header + full-width cards. |
-| R044 | quality-attribute | validated | M009-lxoyrb/S01 | none | S05 visual comparison of retaken dev screenshot (003_skills.png) at 390×844 @2x against design screenshot confirms all Skills section text content matches design. No extra sentences, no rewritten descriptions. |
+| R040 | quality-attribute | validated | M009-lxoyrb/S01 | none | Both Hero CTA buttons have flex-1 md:flex-initial text-center (grep count = 2). S05 + S06 visual comparison of retaken 001_hero.png at 390×844 @2x confirms equal-width buttons matching design proportions. Build passes. |
+| R041 | quality-attribute | validated | M009-lxoyrb/S02 | none | S02 replaced subtitle and 5 card descriptions with design-verbatim text (Card 1 already correct). Negative grep confirms all 6 old phrases absent from source. S05 visual comparison of 004_proyectos.png at 390×844 @2x confirms verbatim match. |
+| R042 | quality-attribute | validated | M009-lxoyrb/S03 | none | S03 restructured all 4 experience items to inline date+company with flex items-center gap-2 (grep count = 4). S05 visual comparison of 005_experiencia.png at 390×844 @2x confirms inline layout matching design. |
+| R043 | quality-attribute | validated | M009-lxoyrb/S04 | none | S04 applied md:items-center md:text-center responsive classes. Grep confirms bare centering classes removed. S05 visual comparison of 006_contacto.png at 390×844 @2x confirms left-aligned header and full-width form/info cards on mobile. |
+| R044 | quality-attribute | validated | M009-lxoyrb/S01 | none | S01 removed extra sentences from Java Ecosystem and APIs & Integration cards (grep confirms 0 matches for removed phrases). S05 visual comparison of 003_skills.png at 390×844 @2x confirms all text matches design. |
 | R045 | quality-attribute | validated | M009-lxoyrb/S05 | none | S05 retook all 7 mobile screenshots at 390×844 @2x retina (Hero, Sobre Mí, Skills, Proyectos, Experiencia, Contacto, Footer) and visually compared each against its design counterpart. 0 discrepancies found. Desktop sanity check at 1440×900 confirmed no regressions. npm run build exits 0. |
 
 ## Coverage Summary
