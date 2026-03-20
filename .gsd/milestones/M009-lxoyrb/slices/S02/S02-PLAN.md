@@ -30,7 +30,7 @@
 
 ## Tasks
 
-- [ ] **T01: Replace Proyectos subtitle and 5 card descriptions with design-verbatim text** `est:15m`
+- [x] **T01: Replace Proyectos subtitle and 5 card descriptions with design-verbatim text** `est:15m`
   - Why: R041 requires subtitle + 6 card descriptions to match the design screenshot verbatim. 5 of 6 descriptions and the subtitle diverge from the design.
   - Files: `src/components/sections/Proyectos.astro`
   - Do: Use `edit` (exact text replacement) for 6 surgical replacements: subtitle, Card 2, Card 3, Card 4, Card 5, Card 6 descriptions. Card 1 already matches — skip it. Each replacement removes trailing sentences or extra words added during M001. No structural or styling changes. **Skill: astro** — the file is an `.astro` component.
@@ -40,3 +40,12 @@
 ## Files Likely Touched
 
 - `src/components/sections/Proyectos.astro`
+
+## Observability / Diagnostics
+
+This slice is a static content-only change with no runtime behavior. Observability is limited to build-time verification:
+
+- **Build signal:** `npm run build` exit code — non-zero indicates a syntax or template error introduced by text edits.
+- **Content verification:** grep-based positive/negative checks confirm exact text presence/absence in the source file.
+- **Failure visibility:** If any text replacement breaks Astro template syntax, the build will surface the error with file and line number. No runtime logs, endpoints, or structured error output apply — this is a static site with no server-side code.
+- **Diagnostic failure check:** `npx astro check` can verify TypeScript/template integrity if the build fails for non-obvious reasons.
