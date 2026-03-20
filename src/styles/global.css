@@ -2,6 +2,7 @@
 
 :root {
   /* Backgrounds */
+  --bg-java-card: #0F0A2A;
   --bg-primary: #ffffff;
   --bg-alt: #f3f4f6;
   --bg-card: #ffffff;
@@ -28,6 +29,8 @@
   --text-amber-accent: #d97706;
   --text-amber-dark: #92400e;
   --text-accent-muted: #7c3aed99;
+  --text-accent-light: #E0D7FE;
+  --text-accent-desc: #C7D2FE;
 
   /* Accent / Brand */
   --color-accent: #7c3aed;

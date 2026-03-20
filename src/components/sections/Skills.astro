@@ -1,0 +1,240 @@
+---
+// Skills section — bento grid: 11 skill cards in 4 rows with 4 visual styles
+---
+
+<section id="habilidades" class="bg-[var(--bg-primary)] py-20 px-20">
+  <div class="max-w-[1440px] mx-auto flex flex-col gap-8">
+
+    <!-- Section header -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-[3px] bg-[var(--color-primary)]"></div>
+        <span class="text-xs font-semibold tracking-[3px] text-[var(--color-primary)]">HABILIDADES TÉCNICAS</span>
+      </div>
+      <h2 class="text-[36px] font-bold tracking-[-0.5px] text-[var(--text-heading)]">
+        Tecnologías y herramientas que domino
+      </h2>
+    </div>
+
+    <!-- Row 1: Featured Java card (500px) + right column (3 cards) -->
+    <div class="flex gap-5 items-stretch">
+
+      <!-- Card 1: featured dark card —>
+      <div class="w-[500px] flex-shrink-0 bg-[var(--bg-java-card)] border-[1.5px] border-[var(--color-accent)] rounded-xl p-7 flex flex-col justify-between gap-4">
+
+        <!-- Badge -->
+        <div class="flex items-start">
+          <span class="inline-flex items-center bg-[var(--color-accent-overlay)] border border-[var(--color-accent)] text-[var(--text-accent-light)] text-[10px] font-bold tracking-[1.2px] rounded px-2.5 py-1">
+            CORE SKILL
+          </span>
+        </div>
+
+        <!-- Title -->
+        <h3 class="text-xl font-bold text-white">Java Ecosystem</h3>
+
+        <!-- Description -->
+        <p class="text-[13px] leading-[1.6] text-[var(--text-accent-desc)]">
+          Más de una década construyendo sistemas enterprise con Java y Spring Boot. Arquitecturas
+          de microservicios, integración con JPA/Hibernate, gestión de builds con Maven y Gradle,
+          y despliegues robustos en entornos cloud.
+        </p>
+
+        <!-- Stats row -->
+        <div class="flex gap-6">
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold text-[var(--color-accent-soft)]">+10</span>
+            <span class="text-[10px] font-semibold text-[var(--color-accent-lighter)]">años exp.</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold text-[var(--color-accent-soft)]">+50</span>
+            <span class="text-[10px] font-semibold text-[var(--color-accent-lighter)]">proyectos</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold text-[var(--color-accent-soft)]">Lead</span>
+            <span class="text-[10px] font-semibold text-[var(--color-accent-lighter)]">nivel</span>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-[var(--color-accent-overlay-light)] border border-[#7C3AED88] text-[var(--text-accent-light)] text-[11px] font-semibold rounded px-2.5 py-1">Java 11+</span>
+          <span class="bg-[var(--color-accent-overlay-light)] border border-[#7C3AED88] text-[var(--text-accent-light)] text-[11px] font-semibold rounded px-2.5 py-1">Spring Boot</span>
+          <span class="bg-[var(--color-accent-overlay-light)] border border-[#7C3AED88] text-[var(--text-accent-light)] text-[11px] font-semibold rounded px-2.5 py-1">JPA</span>
+          <span class="bg-[var(--color-accent-overlay-light)] border border-[#7C3AED88] text-[var(--text-accent-light)] text-[11px] font-semibold rounded px-2.5 py-1">Maven</span>
+        </div>
+
+      </div>
+
+      <!-- Right column: 2 top cards + 1 bottom card -->
+      <div class="flex-1 flex flex-col gap-5">
+
+        <!-- Top sub-row: Card 2 + Card 3 -->
+        <div class="flex gap-5">
+
+          <!-- Card 2: C# / .NET — standard style -->
+          <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+            <h3 class="text-lg font-semibold text-[var(--text-heading)]">C# / .NET</h3>
+            <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+              Desarrollo de APIs empresariales con ASP.NET Core y servicios multiplataforma.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">C#</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">ASP.NET Core</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Entity Framework</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">gRPC</span>
+            </div>
+          </div>
+
+          <!-- Card 3: TypeScript / JavaScript — standard style -->
+          <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+            <h3 class="text-lg font-semibold text-[var(--text-heading)]">TypeScript / JavaScript</h3>
+            <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+              Frontend moderno con React y Angular, backend con Node.js y NestJS para soluciones full-stack.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">React</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Angular</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Node.js</span>
+              <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">NestJS</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Card 4: PHP — muted style -->
+        <div class="bg-[var(--bg-card-muted)] border border-[var(--border-muted)] rounded-lg p-6 flex flex-col gap-3">
+          <h3 class="text-lg font-semibold text-[var(--text-tertiary)]">PHP</h3>
+          <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+            Ecosistema Laravel para desarrollo web ágil con Livewire y arquitectura moderna.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="bg-white text-[var(--text-tertiary)] border border-[var(--border-muted)] text-[11px] font-medium rounded px-2.5 py-1">Laravel</span>
+            <span class="bg-white text-[var(--text-tertiary)] border border-[var(--border-muted)] text-[11px] font-medium rounded px-2.5 py-1">Livewire</span>
+            <span class="bg-white text-[var(--text-tertiary)] border border-[var(--border-muted)] text-[11px] font-medium rounded px-2.5 py-1">Filament</span>
+            <span class="bg-white text-[var(--text-tertiary)] border border-[var(--border-muted)] text-[11px] font-medium rounded px-2.5 py-1">Inertia.js</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Row 2: Distributed Systems (480px) + APIs & Integration (fill) — warm amber style -->
+    <div class="flex gap-5">
+
+      <!-- Card 5: Distributed Systems & Architecture — warm amber, 480px -->
+      <div class="w-[480px] flex-shrink-0 bg-[var(--bg-amber)] border border-[var(--border-default)] rounded-[10px] p-6 flex flex-col gap-3">
+        <div class="flex flex-col gap-0.5">
+          <h3 class="text-lg font-semibold text-[var(--text-heading)]">Distributed Systems & Architecture</h3>
+          <span class="text-[11px] font-medium text-[var(--text-amber-dark)]">Scalable Architecture</span>
+        </div>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Diseño de sistemas distribuidos aplicando DDD, CQRS y patrones de resiliencia.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">DDD</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">CQRS</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">Hexagonal</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">Saga</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">Clean Arch</span>
+        </div>
+      </div>
+
+      <!-- Card 6: APIs & Integration — warm amber, fill -->
+      <div class="flex-1 bg-[var(--bg-amber)] border border-[var(--border-default)] rounded-[10px] p-6 flex flex-col gap-3">
+        <div class="flex flex-col gap-0.5">
+          <h3 class="text-lg font-semibold text-[var(--text-heading)]">APIs & Integration</h3>
+          <span class="text-[11px] font-medium text-[var(--text-amber-dark)]">System Integration</span>
+        </div>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Integración de sistemas a gran escala con APIs REST, OpenAPI y mecanismos de autenticación.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">REST</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">OpenAPI</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">OAuth2</span>
+          <span class="bg-[var(--bg-amber-pill)] text-[var(--text-amber-dark)] text-[11px] font-semibold rounded px-2.5 py-1">Feign</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Row 3: 3 equal cards — standard style -->
+    <div class="flex gap-5">
+
+      <!-- Card 7: Reactive Systems -->
+      <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">Reactive Systems</h3>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Programación reactiva para sistemas de alto rendimiento y baja latencia.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">WebFlux</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">RxJava</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Async</span>
+        </div>
+      </div>
+
+      <!-- Card 8: Cloud & DevOps -->
+      <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">Cloud & DevOps</h3>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Infraestructura cloud y pipelines CI/CD para despliegues automatizados.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Azure</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Docker</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">K8s</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Jenkins</span>
+        </div>
+      </div>
+
+      <!-- Card 9: Data -->
+      <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">Data</h3>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Gestión de datos relacionales y NoSQL con cachés y mensajería distribuida.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">PostgreSQL</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">MongoDB</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Redis</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Kafka</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Row 4: 2 equal cards — standard style -->
+    <div class="flex gap-5">
+
+      <!-- Card 10: Quality & Testing -->
+      <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">Quality & Testing</h3>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Testing integral con cobertura unitaria, integración y end-to-end.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">JUnit</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Mockito</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Integration</span>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="flex-1 bg-[var(--bg-card-alt)] border-[1.5px] border-[var(--border-default)] rounded-lg p-6 shadow-[0_2px_8px_#00000008] flex flex-col gap-3">
+        <h3 class="text-lg font-semibold text-[var(--text-heading)]">Agile Delivery</h3>
+        <p class="text-[13px] leading-[1.5] text-[var(--text-secondary)]">
+          Gestión ágil de proyectos con enfoque en entregas continuas y valor al cliente.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Scrum</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">Kanban</span>
+          <span class="bg-[var(--bg-indigo-pill)] text-[var(--color-primary)] text-[11px] font-medium rounded px-2.5 py-1">CSM</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
