@@ -15,17 +15,6 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison.
 - Notes: Structural classes verified present. Full visual validation pending S07 screenshot retake and comparison against .pen design reference.
 
-### R055 — On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
-- Class: quality-attribute
-- Status: active
-- Description: On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
-- Why it matters: The current pb-8 + border-b creates a different spacing rhythm than the design's structured gap:24 + padding-bottom:24 with divider-inside-item pattern.
-- Source: user
-- Primary owning slice: M010-jgngfg/S06
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Items 2, 3, and 4 are visibly too close to the divider line in current implementation.
-
 ### R056 — All matching screenshot pairs between design references and dev captures must pass visual comparison with 0 remaining discrepancies across all modes (light/dark) and viewports (390px, 1440px).
 - Class: quality-attribute
 - Status: active
@@ -223,6 +212,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: S05/T01 changed all 4 card wrappers from `flex flex-row` to `flex flex-col md:flex-row` and all 4 stripe divs from `w-[5px] self-stretch` to `h-[5px] w-full md:w-[5px] md:h-auto md:self-stretch`. Grep verification: 0 old card-wrapper patterns, 0 old stripe patterns, 4 responsive stripe divs, 8 inner flex-row preserved. npm run build exits 0. Visual browser verification at 390px confirmed horizontal top stripes; at 1280px confirmed vertical left stripes preserved.
 - Notes: Validated in M010-jgngfg/S05. Full visual confirmation pending S07 screenshot retake and comparison against .pen design reference.
 
+### R055 — On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
+- Class: quality-attribute
+- Status: validated
+- Description: On mobile, experience items should have proper spacing from the horizontal divider lines. The .pen design uses gap:24 between items with padding-bottom:24 per item, with the divider inside the item frame. Currently items are too close to the divider.
+- Why it matters: The current pb-8 + border-b creates a different spacing rhythm than the design's structured gap:24 + padding-bottom:24 with divider-inside-item pattern.
+- Source: user
+- Primary owning slice: M010-jgngfg/S06
+- Supporting slices: none
+- Validation: Verified: gap-6 md:gap-0 on container (1×), pb-6 on items 1-3 (3×), 0× border-b, 3× child divider divs h-px w-full bg-[var(--border-default)] md:hidden. npm run build exits 0. Item 4 confirmed unchanged.
+- Notes: Completed in S06/T01. Dividers are child div elements inside content wrappers, not CSS border-b properties, matching the .pen spec.
+
 ## Deferred
 
 ### R007 — Scroll-triggered entrance animations y micro-interacciones en hover, usando la librería Motion (anteriormente Framer Motion for Vanilla). Debe seguir el "Animation Guide" del `.pen`.
@@ -307,12 +307,12 @@ This file is the explicit capability and coverage contract for the project.
 | R052 | quality-attribute | validated | M010-jgngfg/S03 | none | S03/T01 moved px-6 md:px-20 from outer section/footer elements to inner max-w-[1440px] divs on all 8 content sections. Verification: (1) node script confirms no outer element has px-6 and all inner max-w divs do — exit 0, (2) grep shows all 9 px-6 md:px-20 matches are on max-w-[1440px] lines, (3) npm run build exits 0. Content is now constrained to 1440px max-width with 80px horizontal padding on each side (1280px effective), matching Header pattern. |
 | R053 | quality-attribute | active | M010-jgngfg/S04 | none | S04 applied md:flex-row md:justify-between md:items-start on footerTop, md:w-[300px] on brand column, md:gap-12 on nav columns. All grep checks pass and build exits 0. Visual confirmation deferred to S07 screenshot comparison. |
 | R054 | quality-attribute | validated | M010-jgngfg/S05 | none | S05/T01 changed all 4 card wrappers from `flex flex-row` to `flex flex-col md:flex-row` and all 4 stripe divs from `w-[5px] self-stretch` to `h-[5px] w-full md:w-[5px] md:h-auto md:self-stretch`. Grep verification: 0 old card-wrapper patterns, 0 old stripe patterns, 4 responsive stripe divs, 8 inner flex-row preserved. npm run build exits 0. Visual browser verification at 390px confirmed horizontal top stripes; at 1280px confirmed vertical left stripes preserved. |
-| R055 | quality-attribute | active | M010-jgngfg/S06 | none | unmapped |
+| R055 | quality-attribute | validated | M010-jgngfg/S06 | none | Verified: gap-6 md:gap-0 on container (1×), pb-6 on items 1-3 (3×), 0× border-b, 3× child divider divs h-px w-full bg-[var(--border-default)] md:hidden. npm run build exits 0. Item 4 confirmed unchanged. |
 | R056 | quality-attribute | active | M010-jgngfg/S07 | none | unmapped |
 
 ## Coverage Summary
 
-- Active requirements: 3
-- Mapped to slices: 3
-- Validated: 17 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052, R054)
+- Active requirements: 2
+- Mapped to slices: 2
+- Validated: 18 (R001, R002, R003, R004, R005, R006, R008, R040, R041, R042, R043, R044, R045, R050, R051, R052, R054, R055)
 - Unmapped active requirements: 0
