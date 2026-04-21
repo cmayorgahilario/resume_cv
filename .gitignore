@@ -1,6 +1,5 @@
 # build output
 dist/
-.vercel/
 
 # generated types
 .astro/
@@ -23,27 +22,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-# ── GSD baseline (auto-generated) ──
-.gsd
-Thumbs.db
-*.swp
-*.swo
-*~
-.vscode/
-*.code-workspace
-.env.*
-!.env.example
-.next/
-build/
-__pycache__/
-*.pyc
-.venv/
-venv/
-target/
-vendor/
-*.log
-coverage/
-.cache/
-tmp/
-_design/

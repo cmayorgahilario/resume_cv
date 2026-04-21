@@ -1,0 +1,64 @@
+---
+import Link from "./Link.astro";
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-fp-line dark:border-fp-dline bg-fp-bg/90 dark:bg-fp-dbg/90 backdrop-blur-md"
+>
+  <div
+    class="max-w-[1280px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between gap-6"
+  >
+    <a href="#top" class="flex items-center gap-3">
+      <div
+        class="w-7 h-7 bg-fp-ink dark:bg-fp-dfg text-fp-bg dark:text-fp-dbg grid place-items-center text-xs font-semibold"
+      >
+        C
+      </div>
+      <div class="text-sm font-medium">Carlos Mayorga Hilario</div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-7 text-sm">
+      <Link href="#about">Perfil</Link>
+      <Link href="#experience">Experiencia</Link>
+      <Link href="#projects">Proyectos</Link>
+      <Link href="#skills">Stack</Link>
+      <Link href="#education">Formación</Link>
+      <Link href="#contact">Contacto</Link>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Alternar tema"
+        class="w-8 h-8 grid place-items-center border border-fp-line dark:border-fp-dline hover:border-fp-ink dark:hover:border-fp-dfg transition-colors"
+      >
+        <svg
+          class="dark:hidden w-3.5 h-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+          ></path>
+        </svg>
+        <svg
+          class="hidden dark:block w-3.5 h-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <a
+        href="mailto:cmayorgahilario@gmail.com"
+        class="hidden md:inline-flex items-center gap-2 px-4 py-1.5 bg-fp-ink text-fp-bg dark:bg-fp-dfg dark:text-fp-dbg text-sm hover:opacity-80 transition-opacity"
+      >
+        Contactar
+      </a>
+    </div>
+  </div>
+</header>

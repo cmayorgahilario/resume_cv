@@ -1,0 +1,105 @@
+---
+import { experiences } from "../data/portfolio";
+---
+
+<section
+  id="experience"
+  class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-24 border-b border-fp-line dark:border-fp-dline"
+>
+  <div class="grid grid-cols-12 gap-6 md:gap-10 mb-14">
+    <div class="col-span-12 md:col-span-4">
+      <div
+        data-fi
+        class="opacity-0 font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-3"
+      >
+        02 — Trayectoria
+      </div>
+      <h2
+        data-fi
+        style="animation-delay:.05s"
+        class="opacity-0 tracking-[-0.03em] text-4xl md:text-5xl font-light leading-tight"
+      >
+        Experiencia profesional
+      </h2>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <p
+        data-fi
+        class="opacity-0 text-lg text-fp-dim dark:text-fp-ddim leading-relaxed max-w-2xl"
+      >
+        Cuatro posiciones en siete años. Desde Software Developer hasta Tech
+        Lead. Consolidación técnica en backend, arquitectura y liderazgo de
+        equipos.
+      </p>
+    </div>
+  </div>
+
+  <div class="border-t border-fp-line dark:border-fp-dline">
+    {
+      experiences.map((e, i) => (
+        <article
+          class="opacity-0 grid grid-cols-12 gap-6 md:gap-10 py-10 md:py-12 border-b border-fp-line dark:border-fp-dline"
+          data-fi
+          style={`animation-delay:${i * 0.05}s`}
+        >
+          <aside class="col-span-12 md:col-span-3">
+            <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-2">
+              {e.current ? "Actual" : "Posición previa"}
+            </div>
+            <div class="font-mono text-xs text-fp-dim mb-3">
+              {e.from} — {e.to}
+            </div>
+            <div class="text-lg font-medium">{e.co}</div>
+            <div class="text-sm text-fp-dim">{e.loc}</div>
+            {e.current && (
+              <div class="inline-flex items-center gap-2 mt-3">
+                <span class="inline-block w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse-dot" />
+                <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium">
+                  En curso
+                </span>
+              </div>
+            )}
+          </aside>
+          <div class="col-span-12 md:col-span-9">
+            <h3 class="tracking-[-0.03em] text-2xl md:text-3xl font-light leading-tight mb-4">
+              {e.role}
+            </h3>
+            <p class="text-[16px] leading-relaxed text-fp-ink2 dark:text-fp-dfg/90 mb-6 max-w-3xl">
+              {e.desc}
+            </p>
+
+            <ul class="space-y-1.5 mb-6">
+              {e.highlights.map((h) => (
+                <li class="flex items-start gap-3 text-[15px]">
+                  <span class="font-mono text-fp-dim text-xs mt-1">—</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-y border-fp-line dark:border-fp-dline mb-6">
+              {e.kpis.map((k) => (
+                <div>
+                  <div class="tracking-[-0.03em] text-3xl font-mono tabular-nums font-light">
+                    {k[0]}
+                  </div>
+                  <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mt-2">
+                    {k[1]}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              {e.stack.map((s) => (
+                <span class="inline-flex items-center gap-1 font-mono text-[11px] px-2.5 py-1 bg-fp-line2 text-fp-ink2 dark:bg-fp-dline2 dark:text-fp-dfg">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

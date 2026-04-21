@@ -1,26 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/sections/Header.astro';
-import Hero from '../components/sections/Hero.astro';
-import SobreMi from '../components/sections/SobreMi.astro';
-import Skills from '../components/sections/Skills.astro';
-import Proyectos from '../components/sections/Proyectos.astro';
-import Experiencia from '../components/sections/Experiencia.astro';
-import Educacion from '../components/sections/Educacion.astro';
-import Contacto from '../components/sections/Contacto.astro';
-import Footer from '../components/sections/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import Skills from "../components/Skills.astro";
+import Education from "../components/Education.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Values from "../components/Values.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-  <Header />
-  <main>
-    <Hero />
-    <SobreMi />
-    <Skills />
-    <Proyectos />
-    <Experiencia />
-    <Educacion />
-    <Contacto />
-  </main>
+<Layout title="Carlos Mayorga Hilario">
+  <TopBar />
+  <Hero />
+  <About />
+  <Experience />
+  <Projects />
+  <Skills />
+  <Education />
+  <Testimonials />
+  <Values />
+  <Contact />
   <Footer />
 </Layout>
+
+<script>
+  import "../scripts/main.ts";
+</script>

@@ -1,0 +1,142 @@
+---
+import { certs } from "../data/portfolio";
+---
+
+<section
+  id="education"
+  class="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-24 border-b border-fp-line dark:border-fp-dline"
+>
+  <div class="grid grid-cols-12 gap-6 md:gap-10 mb-14">
+    <div class="col-span-12 md:col-span-4">
+      <div
+        data-fi
+        class="opacity-0 font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-3"
+      >
+        05 — Educación
+      </div>
+      <h2
+        data-fi
+        style="animation-delay:.05s"
+        class="opacity-0 tracking-[-0.03em] text-4xl md:text-5xl font-light leading-tight"
+      >
+        Formación
+      </h2>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <p
+        data-fi
+        class="opacity-0 text-lg text-fp-dim dark:text-fp-ddim leading-relaxed max-w-2xl"
+      >
+        Educación formal en Ingeniería de Sistemas, especialización en UX/UI y
+        certificaciones profesionales en Agile Leadership.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-fp-line dark:border-fp-dline mb-0"
+  >
+    <article
+      class="opacity-0 p-8 md:p-10 border-b md:border-b-0 md:border-r border-fp-line dark:border-fp-dline transition-colors duration-300 hover:bg-fp-panel dark:hover:bg-fp-dpanel"
+      data-fi
+    >
+      <div
+        class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-4"
+      >
+        Grado universitario
+      </div>
+      <h3
+        class="tracking-[-0.03em] text-3xl md:text-4xl font-light leading-tight mb-3"
+      >
+        Ingeniería de Sistemas
+      </h3>
+      <div class="text-base text-fp-dim dark:text-fp-ddim mb-1">
+        Universidad Nacional del Callao · UNAC
+      </div>
+      <div class="font-mono text-xs text-fp-dim mb-6">
+        2012 — 2017 · Lima, Perú
+      </div>
+      <p
+        class="text-[15px] leading-relaxed text-fp-ink2 dark:text-fp-dfg/85"
+      >
+        Formación en ciencias de la computación, algoritmos, estructuras de
+        datos, bases de datos, ingeniería de software y desarrollo de
+        sistemas.
+      </p>
+    </article>
+    <article
+      class="opacity-0 p-8 md:p-10 transition-colors duration-300 hover:bg-fp-panel dark:hover:bg-fp-dpanel"
+      data-fi
+      style="animation-delay:.08s"
+    >
+      <div
+        class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-4"
+      >
+        Especialización
+      </div>
+      <h3
+        class="tracking-[-0.03em] text-3xl md:text-4xl font-light leading-tight mb-3"
+      >
+        UX &amp; UI Designer
+      </h3>
+      <div class="text-base text-fp-dim dark:text-fp-ddim mb-1">
+        Toulouse Lautrec
+      </div>
+      <div class="font-mono text-xs text-fp-dim mb-6">
+        2019 — 2020 · Lima, Perú
+      </div>
+      <p
+        class="text-[15px] leading-relaxed text-fp-ink2 dark:text-fp-dfg/85"
+      >
+        Design Thinking, user research, wireframing, prototyping en Figma,
+        usability testing, interaction design y accesibilidad WCAG.
+      </p>
+    </article>
+  </div>
+
+  <div class="mt-14">
+    <div
+      data-fi
+      class="opacity-0 font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-6"
+    >
+      — Certificaciones profesionales
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-fp-line dark:border-fp-dline"
+    >
+      {
+        certs.map((c, i) => {
+          const classes = [
+            "opacity-0",
+            "p-7",
+            "transition-colors",
+            "duration-300",
+            "hover:bg-fp-panel",
+            "dark:hover:bg-fp-dpanel",
+            i < 2 ? "md:border-r" : "",
+            i < certs.length - 1 ? "border-b md:border-b-0" : "",
+            "border-fp-line",
+            "dark:border-fp-dline",
+          ]
+            .filter(Boolean)
+            .join(" ");
+          return (
+            <article
+              class={classes}
+              data-fi
+              style={`animation-delay:${i * 0.05}s`}
+            >
+              <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-fp-dim font-medium mb-3">
+                Certificación · {String(i + 1).padStart(2, "0")}
+              </div>
+              <h4 class="tracking-[-0.03em] text-xl font-light leading-tight mb-2">
+                {c[0]}
+              </h4>
+              <div class="font-mono text-xs text-fp-dim">{c[1]}</div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
